@@ -6,47 +6,42 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 15:47:04 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/23 16:17:58 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx/mlx.h"
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../include/cub3d.h"
 
-typedef struct s_vars
+int	close_window(t_cub *cub)
 {
-	void	*mlx;
-	void	*win;
-}				t_vars;
+	mlx_destroy_window(cub->mlx, cub->win);
+	mlx_destroy_display(cub->mlx);
+	free(cub->mlx);
+	exit(0);
+}
 
-int	close_window(int keycode, t_vars *vars)
+int	key_hook(int keycode, t_cub *cub)
 {
 	if (keycode == 65307)
-	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		mlx_destroy_display(vars->mlx);
-		free(vars->mlx);
-		exit(0);
-	}
+		close_window(cub);
 	return (0);
 }
 
-void	init_window(void)
+void	init_window(t_cub *cub)
 {
-	t_vars	vars;
-
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Cub3D");
-	mlx_hook(vars.win, 2, 1L << 0, close_window, &vars);
-	mlx_loop(vars.mlx);
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub->mlx, 1920, 1080, "Cub3D");
+	mlx_key_hook(cub->win, key_hook, cub);
+	mlx_hook(cub->win, 17, 0, close_window, cub);
+	mlx_loop(cub->mlx);
 }
 
 int	main(int argc, char **argv)
 {
-	//if (parse_input(argc, argv))
-	//	return (0);
-	init_window();
-	return (0);
+	t_cub	cub;
+
+	if (parse_input(argc, argv))
+		return (0);
+	init_window(&cub);
+	return (close_window(&cub), 0);
 }

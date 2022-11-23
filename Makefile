@@ -6,18 +6,18 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/11/23 14:47:37 by gkehren          ###   ########.fr        #
+#    Updated: 2022/11/23 15:54:28 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:= cub3d
+FILES:= cub3d parse
 
 NAME:= cub3D
 
 # ------------------
 CC:=clang
 SRCPATH:=sources/
-HDRPATH:=includes/
+HDRPATH:=include/
 CCHPATH:=obj/
 IFLAGS:=-I ${HDRPATH}
 CFLAGS:=-Wall -Wextra -Werror -g3 ${IFLAGS} -I minilibx/
