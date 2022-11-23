@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 22:29:13 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/23 23:35:21 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ void	init_window(t_cub *cub)
 
 void	print_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
+		printf("%s\n", map[i++]);
 }
 
 int	main(int argc, char **argv)
@@ -56,6 +53,7 @@ int	main(int argc, char **argv)
 	if (parse_input(argc, argv, &cub))
 		return (0);
 	print_map(cub.map);
-	init_window(&cub);
-	return (close_window(&cub), 0);
+	return (free_double_tab((void **)cub.map), 0);
+	//init_window(&cub);
+	//return (close_window(&cub), 0);
 }

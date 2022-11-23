@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 22:31:59 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/23 23:21:08 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 	pmap = get_map(argv[1]);
 	if (!pmap)
 		return (printf("Error: can't open file\n"), 1);
-	if (map_close(pmap))
-		return (printf("Error: map is not close\n"), 1);
 	cub->map = copy(cub->map, pmap);
+	if (map_close(cub->map) == false)
+		return (printf("Error: map is not close\n"), free_double_tab((void **)cub->map), 1);
 	return (0);
 }
