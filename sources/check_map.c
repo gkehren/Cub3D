@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:50:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/24 00:11:07 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/24 14:28:34 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ bool	check_line(char *line)
 	{
 		if ((i == 0 && line[i] != ' ') && (i == 0 && line[i] != '1'))
 			return (false);
-		if ((i == (ft_strlen(line) - 1) && line[i] != ' ') && (i == (ft_strlen(line) - 1) && line[i] != '1'))
+		if ((i == (ft_strlen(line) - 1) && line[i] != ' ')
+			&& (i == (ft_strlen(line) - 1) && line[i] != '1'))
 			return (false);
 		if (i > 0 && i < ft_strlen(line))
 			if (line[i] == ' ' && (line[i + 1] == '0' || line[i + 1] == '\0'))
@@ -31,25 +32,63 @@ bool	check_line(char *line)
 	return (true);
 }
 
+bool	another_one(char **map, int j, int i)
+{
+	if (map[j][i] == ' ' && (map[j + 1][i] == '0'
+		|| map[j + 1][i] == '\0'))
+		return (false);
+	if (map[j][i] == ' ' && (map[j + 1][i + 1] == '0'
+		|| map[j + 1][i + 1] == '\0'))
+		return (false);
+	if (map[j][i] == ' ' && (map[j - 1][i] == '0'
+		|| map[j - 1][i] == '\0'))
+		return (false);
+	if (map[j][i] == '0' && (map[j + 1][i] == '\0'
+		|| map[j + 1][i + 1] == '\0' || map[j + 1][i] == ' '
+		|| map[j + 1][i + 1] == ' '))
+		return (false);
+	if (map[j][i] == '0' && (map[j - 1][i] == '\0'
+		|| map[j - 1][i + 1] == '\0' || map[j - 1][i] == ' '
+		|| map[j - 1][i + 1] == ' '))
+		return (false);
+	if (map[j][i] == '0' && (map[j + 1][i - 1] == '\0'
+		|| map[j + 1][i - 1] == ' '))
+		return (false);
+	return (true);
+}
+
+bool	check_else(char **map, int j, int i, int nb_line)
+{
+	while (map[j][i])
+	{
+
+		if ((j == 0 && map[j][i] != ' ') && (j == 0 && map[j][i] != '1'))
+			return (false);
+		if ((j == (nb_line) && map[j][i] != ' ') && (j == (nb_line)
+			&& map[j][i] != '1'))
+			return (false);
+		if (j > 0 && j < nb_line - 1)
+			if (another_one(map, j, i) == false)
+				return (false);
+		i++;
+	}
+	return (true);
+}
+
 bool	map_close(char **map)
 {
-	int	i;
 	int	j;
 	int	nb_line;
 
-	i = 0;
 	j = 0;
 	nb_line = 0;
-	while (map[nb_line++]);
+	while (map[nb_line])
+		nb_line++;
 	while (map[j])
 	{
-		if (j == 0)
-			if (check_line(map[j]) == false)
-				return (false);
-		if (j == nb_line - 1)
-			if (check_line(map[j]) == false)
-				return (false);
 		if (check_line(map[j]) == false)
+			return (false);
+		if (check_else(map, j, 0, nb_line) == false)
 			return (false);
 		j++;
 	}
