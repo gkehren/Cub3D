@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 22:43:09 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 14:51:43 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_cub
 int			parse_input(int argc, char **argv, t_cub *cub);
 char		*get_next_line(int fd);
 bool		map_close(char **map);
+bool		check_char_map(char **map);
+int			check_path(char *file);
+char		**get_map(char *file);
 /*=================*/
 
 /*=====UTILS=====*/

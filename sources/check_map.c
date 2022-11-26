@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:50:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/24 14:28:34 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 14:27:21 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ bool	check_else(char **map, int j, int i, int nb_line)
 {
 	while (map[j][i])
 	{
-
 		if ((j == 0 && map[j][i] != ' ') && (j == 0 && map[j][i] != '1'))
 			return (false);
 		if ((j == (nb_line) && map[j][i] != ' ') && (j == (nb_line)
@@ -90,6 +89,28 @@ bool	map_close(char **map)
 			return (false);
 		if (check_else(map, j, 0, nb_line) == false)
 			return (false);
+		j++;
+	}
+	return (true);
+}
+
+bool	check_char_map(char **map)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	while (map[j])
+	{
+		i = 0;
+		while (map[j][i])
+		{
+			if (map[j][i] != ' ' && map[j][i] != '1' && map[j][i] != '0'
+				&& map[j][i] != 'N' && map[j][i] != 'S' && map[j][i] != 'E'
+				&& map[j][i] != 'W' && map[j][i] != '\0')
+				return (false);
+			i++;
+		}
 		j++;
 	}
 	return (true);
