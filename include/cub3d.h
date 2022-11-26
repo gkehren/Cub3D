@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 14:51:43 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:45:24 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct s_cub
 	void	*mlx;
 	void	*win;
 	char	**map;
+	char	*path_no;
+	char	*path_so;
+	char	*path_we;
+	char	*path_ea;
+	int		rgb_floor[3];
+	int		rgb_ceiling[3];
 }				t_cub;
 
 /*=====PARSING=====*/
@@ -38,6 +44,8 @@ bool		map_close(char **map);
 bool		check_char_map(char **map);
 int			check_path(char *file);
 char		**get_map(char *file);
+bool		get_texture(t_cub *cub, char **map, int start);
+char		*ft_strcpy_texture(char *dst, char *src);
 /*=================*/
 
 /*=====UTILS=====*/

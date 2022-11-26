@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/11/26 14:52:00 by gkehren          ###   ########.fr        #
+#    Updated: 2022/11/26 15:47:52 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:= cub3d parse get_next_line get_next_line_utils check_map free get_map
+FILES:= cub3d parse get_next_line get_next_line_utils check_map free get_map get_texture
 
 NAME:= cub3D
 

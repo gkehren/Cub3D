@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:38:38 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 16:42:23 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:15:19 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ char	*ft_strcpy(char *dst, char *src)
 		i++;
 	}
 	dst[i] = '\0';
+	return (dst);
+}
+
+char	*ft_strcpy_texture(char *dst, char *src)
+{
+	int	i;
+	int	j;
+
+	i = 3;
+	j = 0;
+	if (ft_strlen(src) < 4)
+		return (NULL);
+	dst = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
+	while (src[i] != '\0' && src[i] != '\n')
+	{
+		dst[j] = src[i];
+		i++;
+		j++;
+	}
+	dst[j] = '\0';
 	return (dst);
 }
 

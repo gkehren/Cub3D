@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 14:14:18 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:49:49 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ int	close_window(t_cub *cub)
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
+	free(cub->path_no);
+	free(cub->path_so);
+	free(cub->path_we);
+	free(cub->path_ea);
 	free_double_tab((void **)cub->map);
 	exit(0);
 }
@@ -53,7 +57,6 @@ int	main(int argc, char **argv)
 	if (parse_input(argc, argv, &cub))
 		return (0);
 	print_map(cub.map);
-	return (free_double_tab((void **)cub.map), 0);
-	//init_window(&cub);
-	//return (close_window(&cub), 0);
+	init_window(&cub);
+	return (close_window(&cub), 0);
 }

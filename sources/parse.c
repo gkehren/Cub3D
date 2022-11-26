@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 14:51:04 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/26 15:44:56 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 	pmap = get_map(argv[1]);
 	if (!pmap)
 		return (printf("Error: can't open file\n"), 1);
+	if (get_texture(cub, pmap, get_start_map(pmap)) == false)
+		return (printf("Error: texture is invalid\n"), 1);
 	cub->map = copy(cub->map, pmap);
 	if (!cub->map)
 		return (printf("Error: map not found\n"), 1);
