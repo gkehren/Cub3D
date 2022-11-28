@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 15:45:24 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/11/28 14:36:11 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ typedef struct s_cub
 	int		rgb_floor[3];
 	int		rgb_ceiling[3];
 }				t_cub;
+
+/*=====MLX=====*/
+void	init_window(t_cub *cub);
+int		close_window(t_cub *cub);
+/*=================*/
 
 /*=====PARSING=====*/
 int			parse_input(int argc, char **argv, t_cub *cub);
