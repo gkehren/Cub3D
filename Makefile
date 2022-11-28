@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/11/26 15:47:52 by gkehren          ###   ########.fr        #
+#    Updated: 2022/11/28 14:32:09 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FILES:= cub3d parse get_next_line get_next_line_utils check_map free get_map get_texture
+FILES:= cub3d parsing/parse parsing/get_next_line parsing/get_next_line_utils parsing/check_map free parsing/get_map parsing/get_texture
 
 NAME:= cub3D
 
@@ -37,7 +37,6 @@ EOC:="\033[0;0m"
 SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
-CCHF:=.cache_exists
 
 all: ${NAME}
 
@@ -47,38 +46,24 @@ ${NAME}: ${OBJ}
 	@${CC} ${CFLAGS} ${SRC} -Lmlx_linux -lmlx_Linux -L minilibx/ -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
 	@echo $(GREEN) " - OK" $(EOC)
 
-${CCHPATH}%.o: ${SRCPATH}%.c | ${CCHF}
+${CCHPATH}%.o: ${SRCPATH}%.c
+	@mkdir -p $(@D)
 	@echo ${PURPLE} " - Compiling $< into $@" ${EOC}
 	@${CC} ${CFLAGS} -Imlx_linux -O3 -c $< -o $@
-
-${BONUS}:
-	@echo ${CYAN} " - Compiling $@" $(RED)
-	make -C minilibx
-	@${CC} ${CFLAGS} ${SRC} -Lmlx_linux -lmlx_Linux -L minilibx/ -Imlx_linux -lXext -lX11 -lm -lz -o ${BONUS}
-	@echo $(GREEN) " - OK" $(EOC)
 
 %.c:
 	@echo ${RED}"Missing file : $@" ${EOC}
 
-$(CCHF):
-	@mkdir $(CCHPATH)
-	@touch $(CCHF)
-
-bonus: ${BONUS}
-
 clean:
 	@make -C minilibx clean
 	@rm -rf ${CCHPATH}
-	@rm -f ${CCHF}
 
 fclean:	clean
 	@make -C minilibx clean
 	@rm -f ${NAME}
-	@rm -f ${BONUS}
 	@rm -rf ${NAME}.dSYM/
-	@rm -rf ${BONUS}.dSYM/
 
 re:	fclean
 	@${MAKE} all
 
-.PHONY:	all bonus clean fclean re
+.PHONY:	all clean fclean re
