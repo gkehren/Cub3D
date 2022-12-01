@@ -6,13 +6,14 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/28 14:36:11 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/01 22:47:28 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/*=====INCLUDE=====*/
 # include "../minilibx/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
@@ -20,15 +21,27 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
+/*=====DEFINE=====*/
 # define WIDTH 1920
 # define HEIGHT 1080
 # define PIXELS 32
+# define IMG 3
+# define BLACK 0
+# define WHITE 1
+# define BLUE 2
+
+/*=====STRUCT=====*/
+typedef struct img
+{
+	void	*addr;
+}	t_img;
 
 typedef struct s_cub
 {
 	void	*mlx;
 	void	*win;
 	char	**map;
+	t_img	*img;
 	char	*path_no;
 	char	*path_so;
 	char	*path_we;
@@ -38,8 +51,9 @@ typedef struct s_cub
 }				t_cub;
 
 /*=====MLX=====*/
-void	init_window(t_cub *cub);
-int		close_window(t_cub *cub);
+void		init_window(t_cub *cub);
+int			close_window(t_cub *cub);
+void		generate_img(t_cub *cub);
 /*=================*/
 
 /*=====PARSING=====*/
