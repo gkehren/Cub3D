@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 15:44:56 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 01:16:01 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 	if (map_close(cub->map) == false)
 		return (printf("Error: map is not close\n"),
 			free_double_tab((void **)cub->map), 1);
-	if (check_char_map(cub->map) == false)
+	if (check_char_map(cub->map, cub) == false)
 		return (printf("Error: map contains invalid characters\n"), 1);
 	return (0);
 }

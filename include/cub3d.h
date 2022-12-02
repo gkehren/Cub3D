@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/01 22:47:28 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 02:05:43 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,45 @@
 # define BLUE 2
 
 /*=====STRUCT=====*/
-typedef struct img
+typedef struct s_img
 {
 	void	*addr;
 }	t_img;
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
+
 typedef struct s_cub
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	t_img	*img;
-	char	*path_no;
-	char	*path_so;
-	char	*path_we;
-	char	*path_ea;
-	int		rgb_floor[3];
-	int		rgb_ceiling[3];
-}				t_cub;
+	void		*mlx;
+	void		*win;
+	char		**map;
+	t_img		*img;
+	t_player	player;
+	char		*path_no;
+	char		*path_so;
+	char		*path_we;
+	char		*path_ea;
+	int			rgb_floor[3];
+	int			rgb_ceiling[3];
+}	t_cub;
 
 /*=====MLX=====*/
 void		init_window(t_cub *cub);
 int			close_window(t_cub *cub);
 void		generate_img(t_cub *cub);
+void		render_map(char **map, t_cub *cub, t_player *player);
+int			move_player(int keycode, t_cub *cub);
 /*=================*/
 
 /*=====PARSING=====*/
 int			parse_input(int argc, char **argv, t_cub *cub);
 char		*get_next_line(int fd);
 bool		map_close(char **map);
-bool		check_char_map(char **map);
+bool		check_char_map(char **map, t_cub *cub);
 int			check_path(char *file);
 char		**get_map(char *file);
 bool		get_texture(t_cub *cub, char **map, int start);

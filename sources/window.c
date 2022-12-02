@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/01 22:48:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 02:05:50 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,47 +31,13 @@ int	close_window(t_cub *cub)
 	exit(0);
 }
 
-int	key_hook(int keycode, t_cub *cub)
-{
-	if (keycode == 65307)
-		close_window(cub);
-	return (0);
-}
-
-void	render_image(t_cub *cub, int n, int i, int j)
-{
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img[n].addr,
-		j * PIXELS, i * PIXELS);
-}
-
-void	render_map(char **map, t_cub *cub, int rr)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (map[i][j] == '1' && rr)
-				render_image(cub, BLACK, i, j);
-			else if (map[i][j] == '0' && rr)
-				render_image(cub, WHITE, i, j);
-			else if (map[i][j] == 'N' && rr)
-				render_image(cub, BLUE, i, j);
-		}
-	}
-}
-
 void	init_window(t_cub *cub)
 {
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "Cub3D");
 	generate_img(cub);
-	mlx_key_hook(cub->win, key_hook, cub);
-	render_map(cub->map, cub, 1);
+	render_map(cub->map, cub, &cub->player);
+	mlx_key_hook(cub->win, move_player, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);
 	mlx_loop(cub->mlx);
 }
