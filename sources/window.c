@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 15:47:31 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:53:51 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	close_window(t_cub *cub)
 	free(cub->path_so);
 	free(cub->path_we);
 	free(cub->path_ea);
+	free(cub->ray);
 	free_double_tab((void **)cub->map);
 	exit(0);
 }
@@ -36,8 +37,10 @@ void	init_window(t_cub *cub)
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "Cub3D");
 	generate_img(cub);
+	init_player(cub);
+	init_rays(cub);
 	render_minimap(cub, &cub->player, &cub->player, 1);
-	mlx_key_hook(cub->win, move_player, cub);
+	mlx_hook(cub->win, 2, 1L << 0, move_player, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);
 	mlx_loop(cub->mlx);
 }

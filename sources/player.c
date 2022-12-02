@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 16:11:45 by gkehren          ###   ########.fr       */
+/*   Created: 2022/12/02 16:41:27 by gkehren           #+#    #+#             */
+/*   Updated: 2022/12/02 16:46:31 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int argc, char **argv)
+void	init_player(t_cub *cub)
 {
-	t_cub	cub;
-
-	if (parse_input(argc, argv, &cub))
-		return (0);
-	init_window(&cub);
-	return (close_window(&cub), 0);
+	cub->player.width = 1;
+	cub->player.height = 1;
+	cub->player.turndirection = 0;
+	cub->player.walkdirection = 0;
+	cub->player.rotationangle = PI / 2;
+	cub->player.walkspeed = 100;
+	cub->player.turnspeed = 45 * (PI / 180);
 }

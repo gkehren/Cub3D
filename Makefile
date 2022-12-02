@@ -6,13 +6,13 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/12/02 01:39:37 by gkehren          ###   ########.fr        #
+#    Updated: 2022/12/02 16:41:44 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES:= cub3d free \
 		parsing/parse parsing/get_next_line parsing/get_next_line_utils parsing/check_map parsing/get_map parsing/get_texture \
-		window image move render
+		window image move render rays player
 
 NAME:= cub3D
 

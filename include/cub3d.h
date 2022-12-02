@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 15:47:42 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 18:04:42 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,25 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <stdbool.h>
 
 /*=====DEFINE=====*/
 # define WIDTH 1920
 # define HEIGHT 1080
-# define PIXELS 32
-# define IMG 3
+# define PIXELS 48
+# define NUM_RAYS 1
+# define PI 3.14159265
+# define FOV_ANGLE (60 * (PI / 180))
+# define IMG 4
 # define BLACK 0
 # define WHITE 1
 # define BLUE 2
+# define GREEN 3
+# define UP 0
+# define DOWN 1
+# define RIGHT 2
+# define LEFT 3
 
 /*=====STRUCT=====*/
 typedef struct s_img
@@ -38,21 +47,29 @@ typedef struct s_img
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
+	double	width;
+	double	height;
+	int		turndirection;
+	int		walkdirection;
+	double	rotationangle;
+	double	walkspeed;
+	double	turnspeed;
 }	t_player;
 
 typedef struct s_ray
 {
-	float	rayangle;
-	float	wallhitx;
-	float	wallhity;
-	float	distance;
+	double	rayangle;
+	double	wallhitx;
+	double	wallhity;
+	double	distance;
 	int		washitvertical;
 	int		israyfacingup;
 	int		israyfacingdown;
 	int		israyfacingleft;
 	int		israyfacingright;
+	int		wallhitcontent;
 }	t_ray;
 
 typedef struct s_cub
@@ -62,6 +79,7 @@ typedef struct s_cub
 	char		**map;
 	t_img		*img;
 	t_player	player;
+	t_ray		*ray;
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
@@ -70,12 +88,15 @@ typedef struct s_cub
 	int			rgb_ceiling[3];
 }	t_cub;
 
-/*=====MLX=====*/
+/*=====DISPLAY=====*/
 void		init_window(t_cub *cub);
 int			close_window(t_cub *cub);
 void		generate_img(t_cub *cub);
 void		render_minimap(t_cub *cub, t_player *player, t_player *bplayer, int rr);
 int			move_player(int keycode, t_cub *cub);
+void		init_rays(t_cub *cub);
+int			cast_all_rays(t_cub *cub);
+void		init_player(t_cub *cub);
 /*=================*/
 
 /*=====PARSING=====*/

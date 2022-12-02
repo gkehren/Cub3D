@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 21:29:34 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 01:29:22 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 17:52:23 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ void	*get_image(t_cub *cub, char *path)
 void	generate_img(t_cub *cub)
 {
 	int			i;
-	static char	*path[3] = {
+	static char	*path[IMG] = {
 		"./assets/black.xpm",
 		"./assets/white.xpm",
-		"./assets/blue.xpm"};
+		"./assets/blue.xpm",
+		"./assets/green.xpm"};
 
 	i = 0;
-	cub->img = (t_img *)malloc(sizeof(t_img) * 3);
-	while (i < 3)
+	cub->img = (t_img *)malloc(sizeof(t_img) * IMG);
+	while (i < IMG)
 	{
 		cub->img[i].addr = get_image(cub, path[i]);
 		i++;
