@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 02:06:13 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 15:48:08 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	move_left(char **map, t_player *player)
 
 int	move_player(int keycode, t_cub *cub)
 {
+	t_player	bplayer;
+
+	bplayer = cub->player;
 	if (keycode == 115)
 		move_down(cub->map, &cub->player);
 	else if (keycode == 119)
@@ -48,6 +51,6 @@ int	move_player(int keycode, t_cub *cub)
 		move_left(cub->map, &cub->player);
 	if (keycode == 65307)
 		close_window(cub);
-	render_map(cub->map, cub, &cub->player);
+	render_minimap(cub, &cub->player, &bplayer, 0);
 	return (0);
 }

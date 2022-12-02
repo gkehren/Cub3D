@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 02:05:43 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/02 15:47:42 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ typedef struct s_player
 	int	y;
 }	t_player;
 
+typedef struct s_ray
+{
+	float	rayangle;
+	float	wallhitx;
+	float	wallhity;
+	float	distance;
+	int		washitvertical;
+	int		israyfacingup;
+	int		israyfacingdown;
+	int		israyfacingleft;
+	int		israyfacingright;
+}	t_ray;
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -61,7 +74,7 @@ typedef struct s_cub
 void		init_window(t_cub *cub);
 int			close_window(t_cub *cub);
 void		generate_img(t_cub *cub);
-void		render_map(char **map, t_cub *cub, t_player *player);
+void		render_minimap(t_cub *cub, t_player *player, t_player *bplayer, int rr);
 int			move_player(int keycode, t_cub *cub);
 /*=================*/
 
