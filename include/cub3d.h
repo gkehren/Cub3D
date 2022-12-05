@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 13:13:51 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:20:51 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 /*=====DEFINE=====*/
 # define WIDTH 1920
 # define HEIGHT 1080
-# define PIXELS 48
+# define PIXELS 16
 # define NUM_RAYS 1
 # define PI 3.14159265
 # define FOV_ANGLE (60 * (PI / 180))
@@ -77,6 +77,7 @@ typedef struct s_cub
 	void		*mlx;
 	void		*win;
 	char		**map;
+	int			len_map;
 	t_img		*img;
 	t_player	player;
 	t_ray		*ray;
@@ -97,6 +98,7 @@ int			move_player(int keycode, t_cub *cub);
 void		init_rays(t_cub *cub);
 int			cast_all_rays(t_cub *cub);
 void		init_player(t_cub *cub);
+void		render_image(t_cub *cub, int n, int i, int j);
 /*=================*/
 
 /*=====PARSING=====*/

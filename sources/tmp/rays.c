@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 12:28:25 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:25:42 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ void	cast_ray_up(t_cub *cub, float rayangle, t_ray *ray)
 	while (ray->wallhitcontent == 0)
 	{
 		ray->wallhitx -= 1;
-		printf("%f | %f\n", ray->wallhitx, ray->wallhity);
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
 		{
 			ray->wallhitcontent = 1;
-			mlx_put_image_to_window(cub->mlx, cub->win, cub->img[GREEN].addr,
-				(int)ray->wallhity * PIXELS, (int)ray->wallhitx * PIXELS);
+			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
 		}
 	}
 }
@@ -61,12 +59,10 @@ void	cast_ray_down(t_cub *cub, float rayangle, t_ray *ray)
 	while (ray->wallhitcontent == 0)
 	{
 		ray->wallhitx += 1;
-		printf("%f | %f\n", ray->wallhitx, ray->wallhity);
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
 		{
 			ray->wallhitcontent = 1;
-			mlx_put_image_to_window(cub->mlx, cub->win, cub->img[GREEN].addr,
-				(int)ray->wallhity * PIXELS, (int)ray->wallhitx * PIXELS);
+			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
 		}
 	}
 }
@@ -79,12 +75,10 @@ void	cast_ray_right(t_cub *cub, float rayangle, t_ray *ray)
 	while (ray->wallhitcontent == 0)
 	{
 		ray->wallhity += 1;
-		printf("%f | %f\n", ray->wallhitx, ray->wallhity);
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
 		{
 			ray->wallhitcontent = 1;
-			mlx_put_image_to_window(cub->mlx, cub->win, cub->img[GREEN].addr,
-				(int)ray->wallhity * PIXELS, (int)ray->wallhitx * PIXELS);
+			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
 		}
 	}
 }
@@ -97,12 +91,10 @@ void	cast_ray_left(t_cub *cub, float rayangle, t_ray *ray)
 	while (ray->wallhitcontent == 0)
 	{
 		ray->wallhity -= 1;
-		printf("%f | %f\n", ray->wallhitx, ray->wallhity);
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
 		{
 			ray->wallhitcontent = 1;
-			mlx_put_image_to_window(cub->mlx, cub->win, cub->img[GREEN].addr,
-				(int)ray->wallhity * PIXELS, (int)ray->wallhitx * PIXELS);
+			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
 		}
 	}
 }
@@ -126,5 +118,6 @@ int	cast_all_rays(t_cub *cub)
 			cast_ray_left(cub, rayangle, &cub->ray[i]);
 		i++;
 	}
+	(void)cub;
 	return (0);
 }
