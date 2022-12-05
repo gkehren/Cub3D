@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 12:28:38 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 18:40:29 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	close_window(t_cub *cub)
 
 	i = 0;
 	while (i < IMG)
-		mlx_destroy_image(cub->mlx, cub->img[i++].addr);
+		mlx_destroy_image(cub->mlx, cub->img[i++].img);
+	mlx_destroy_image(cub->mlx, cub->minimap.img);
 	free(cub->img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
@@ -39,6 +40,7 @@ void	init_window(t_cub *cub)
 	generate_img(cub);
 	init_player(cub);
 	init_rays(cub);
+	cub->minimap.img = mlx_new_image(cub->mlx, cub->width_map * PIXELS, cub->height_map * PIXELS);
 	render_minimap(cub, &cub->player, &cub->player, 1);
 	mlx_hook(cub->win, 2, 1L << 0, move_player, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);

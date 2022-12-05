@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 15:42:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 17:35:25 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,23 @@ char	**copy(char **map, char **pmap)
 	return (map);
 }
 
-int	len_map(char **map)
+void	len_map(t_cub *cub)
 {
 	int	j;
 	int	max;
 
 	j = 0;
 	max = 0;
-	while (map[j])
+	while (cub->map[j])
 	{
-		if ((int)ft_strlen(map[j]) > max)
-			max = ft_strlen(map[j]);
+		if ((int)ft_strlen(cub->map[j]) > max)
+			max = ft_strlen(cub->map[j]);
 		j++;
 	}
-	return (max);
+	cub->width_map = max;
+	while (cub->map[j])
+		j++;
+	cub->height_map = j;
 }
 
 int	parse_input(int argc, char **argv, t_cub *cub)
@@ -103,6 +106,6 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 			free_double_tab((void **)cub->map), 1);
 	if (check_char_map(cub->map, cub) == false)
 		return (printf("Error: map contains invalid characters\n"), 1);
-	cub->len_map = len_map(cub->map);
+	len_map(cub);
 	return (0);
 }

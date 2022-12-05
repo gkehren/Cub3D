@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 16:20:51 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 19:02:39 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@
 /*=====STRUCT=====*/
 typedef struct s_img
 {
-	void	*addr;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_img;
 
 typedef struct s_player
@@ -77,8 +81,10 @@ typedef struct s_cub
 	void		*mlx;
 	void		*win;
 	char		**map;
-	int			len_map;
+	int			width_map;
+	int			height_map;
 	t_img		*img;
+	t_img		minimap;
 	t_player	player;
 	t_ray		*ray;
 	char		*path_no;
@@ -90,6 +96,7 @@ typedef struct s_cub
 }	t_cub;
 
 /*=====DISPLAY=====*/
+void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		init_window(t_cub *cub);
 int			close_window(t_cub *cub);
 void		generate_img(t_cub *cub);
