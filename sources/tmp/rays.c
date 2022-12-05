@@ -6,11 +6,11 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 18:05:26 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:28:25 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	init_rays(t_cub *cub)
 {

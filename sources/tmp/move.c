@@ -6,11 +6,11 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 17:55:27 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:28:18 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	move_down(char **map, t_player *player)
 {

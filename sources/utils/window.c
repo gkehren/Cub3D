@@ -6,11 +6,11 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 17:53:51 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:28:38 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	close_window(t_cub *cub)
 {

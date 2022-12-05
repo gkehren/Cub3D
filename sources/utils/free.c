@@ -6,11 +6,11 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:03:57 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/23 17:07:11 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 12:28:32 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 void	free_double_tab(void **ptr)
 {
