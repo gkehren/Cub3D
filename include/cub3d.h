@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 19:02:39 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 22:52:08 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include <stdbool.h>
 
 /*=====DEFINE=====*/
@@ -30,14 +31,10 @@
 # define PI 3.14159265
 # define FOV_ANGLE (60 * (PI / 180))
 # define IMG 4
-# define BLACK 0
-# define WHITE 1
-# define BLUE 2
-# define GREEN 3
-# define UP 0
-# define DOWN 1
-# define RIGHT 2
-# define LEFT 3
+# define BLACK 0x5B5767
+# define WHITE 0x6C6877
+# define BLUE 0x1E90FF
+# define GREEN 0x32CD32
 
 /*=====STRUCT=====*/
 typedef struct s_img
@@ -55,8 +52,8 @@ typedef struct s_player
 	double	y;
 	double	width;
 	double	height;
-	int		turndirection;
-	int		walkdirection;
+	double	turn_x;
+	double	turn_y;
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
@@ -100,7 +97,7 @@ void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void		init_window(t_cub *cub);
 int			close_window(t_cub *cub);
 void		generate_img(t_cub *cub);
-void		render_minimap(t_cub *cub, t_player *player, t_player *bplayer, int rr);
+void		render_minimap(t_cub *cub, t_player *player);
 int			move_player(int keycode, t_cub *cub);
 void		init_rays(t_cub *cub);
 int			cast_all_rays(t_cub *cub);

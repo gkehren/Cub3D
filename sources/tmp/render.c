@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 19:20:16 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 23:08:26 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,53 @@ void	render_pixels(int size, t_img *img, int x, int y, int color)
 	}
 }
 
-void	render_player(t_cub *cub, t_player *player, t_player *bplayer)
+void	print_cross(int x, int y, t_img *img)
 {
-	render_pixels(PIXELS, &cub->minimap,(int)bplayer->x, (int)bplayer->y, 0x6C6877);
-	render_pixels(PIXELS, &cub->minimap,(int)player->x, (int)player->y, 0x1E90FF);
+	int	begin;
+	int	aled;
+
+	begin = x - 3;
+	aled = begin + 7;
+	while (begin < aled)
+	{
+		my_mlx_pixel_put(img, y, begin, BLUE);
+		begin++;
+	}
+	begin = y - 3;
+	aled = begin + 7;
+	while (begin < aled)
+	{
+		my_mlx_pixel_put(img, begin, x, BLUE);
+		begin++;
+	}
 }
 
-void	render_minimap(t_cub *cub, t_player *player, t_player *bplayer, int rr)
+void	render_player(t_cub *cub, t_player *player)
+{
+	print_cross(player->x * PIXELS, player->y * PIXELS, &cub->minimap);
+}
+
+void	render_minimap(t_cub *cub, t_player *player)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	cub->minimap.addr = mlx_get_data_addr(cub->minimap.img, &cub->minimap.bits_per_pixel, &cub->minimap.line_length, &cub->minimap.endian);
+	cub->minimap.addr = mlx_get_data_addr(cub->minimap.img,
+			&cub->minimap.bits_per_pixel, &cub->minimap.line_length,
+			&cub->minimap.endian);
 	while (cub->map[++i])
 	{
 		j = -1;
 		while (cub->map[i][++j])
 		{
-			if (cub->map[i][j] == '1' && rr)
-				render_pixels(PIXELS, &cub->minimap, i, j, 0x5B5767);
-			else if (cub->map[i][j] != ' ' && rr)
-				render_pixels(PIXELS, &cub->minimap, i, j, 0x6C6877);
+			if (cub->map[i][j] == '1')
+				render_pixels(PIXELS, &cub->minimap, i, j, BLACK);
+			else if (cub->map[i][j] != ' ')
+				render_pixels(PIXELS, &cub->minimap, i, j, WHITE);
 		}
 	}
-	render_player(cub, player, bplayer);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img, WIDTH - (cub->width_map * PIXELS), 0);
+	render_player(cub, player);
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
+		WIDTH - (cub->width_map * PIXELS), 0);
 }
-

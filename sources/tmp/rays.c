@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 16:25:42 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 23:08:36 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ void	cast_ray_up(t_cub *cub, float rayangle, t_ray *ray)
 	{
 		ray->wallhitx -= 1;
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
-		{
 			ray->wallhitcontent = 1;
-			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
-		}
 	}
 }
 
@@ -60,10 +57,7 @@ void	cast_ray_down(t_cub *cub, float rayangle, t_ray *ray)
 	{
 		ray->wallhitx += 1;
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
-		{
 			ray->wallhitcontent = 1;
-			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
-		}
 	}
 }
 
@@ -76,10 +70,7 @@ void	cast_ray_right(t_cub *cub, float rayangle, t_ray *ray)
 	{
 		ray->wallhity += 1;
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
-		{
 			ray->wallhitcontent = 1;
-			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
-		}
 	}
 }
 
@@ -92,30 +83,19 @@ void	cast_ray_left(t_cub *cub, float rayangle, t_ray *ray)
 	{
 		ray->wallhity -= 1;
 		if (cub->map[(int)ray->wallhitx][(int)ray->wallhity] == '1')
-		{
 			ray->wallhitcontent = 1;
-			render_image(cub, GREEN, (int)ray->wallhitx, (int)ray->wallhity);
-		}
 	}
 }
 
 int	cast_all_rays(t_cub *cub)
 {
-	int	i;
+	int		i;
 	float	rayangle;
 
 	i = 0;
 	rayangle = 0;
 	while (i < NUM_RAYS)
 	{
-		if (cub->player.turndirection == UP)
-			cast_ray_up(cub, rayangle, &cub->ray[i]);
-		else if (cub->player.turndirection == DOWN)
-			cast_ray_down(cub, rayangle, &cub->ray[i]);
-		else if (cub->player.turndirection == RIGHT)
-			cast_ray_right(cub, rayangle, &cub->ray[i]);
-		else if (cub->player.turndirection == LEFT)
-			cast_ray_left(cub, rayangle, &cub->ray[i]);
 		i++;
 	}
 	(void)cub;
