@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 01:16:01 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/05 13:05:06 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	**copy_second(char **map, char **pmap, int j, int nb_line)
 	int	n;
 	int	i;
 
-	i = 0;
 	n = 0;
 	while (j < nb_line)
 	{
