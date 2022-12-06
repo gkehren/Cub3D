@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/06 14:51:41 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 00:39:38 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@
 # define PIXELS 16
 # define NUM_RAYS 1
 # define PI 3.14159265
-# define FOV_ANGLE (60 * (PI / 180))
 # define IMG 4
 # define BLACK 0x5B5767
 # define WHITE 0x6C6877

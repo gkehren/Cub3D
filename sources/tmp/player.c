@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:27 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 22:16:36 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 00:36:48 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,27 @@ void	init_player(t_cub *cub)
 {
 	cub->player.width = 1;
 	cub->player.height = 1;
-	cub->player.turn_x = 0;
-	cub->player.turn_y = 0;
+	if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'N')
+	{
+		cub->player.turn_x = 1;
+		cub->player.turn_y = 0;
+	}
+	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'S')
+	{
+		cub->player.turn_x = -1;
+		cub->player.turn_y = 0;
+	}
+	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'W')
+	{
+		cub->player.turn_x = 0;
+		cub->player.turn_y = 1;
+	}
+	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'E')
+	{
+		cub->player.turn_x = 0;
+		cub->player.turn_y = -1;
+	}
 	cub->player.rotationangle = PI;
 	cub->player.walkspeed = 0.17;
-	cub->player.turnspeed = 45 * (PI / 180);
+	cub->player.turnspeed = 0.5;
 }
