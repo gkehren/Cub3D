@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/06 13:19:22 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/06 20:13:30 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,26 @@ void	print_cross(int x, int y, t_img *img)
 	}
 }
 
-void	render_player(t_cub *cub, t_player *player)
+void	print_square(int x, int y, int size, t_img *img)
 {
-	print_cross(player->x * PIXELS, player->y * PIXELS, &cub->minimap);
+	int	end_col;
+	int	end_line;
+	int	tmp;
+
+	end_col = x + (size / 2);
+	end_line = y + (size / 2);
+	x -= (size / 2);
+	y -= (size / 2);
+	while (x < end_col)
+	{
+		tmp = y;
+		while (tmp < end_line)
+		{
+			my_mlx_pixel_put(img, tmp, x, BLUE);
+			tmp++;
+		}
+		x++;
+	}
 }
 
 void	render_minimap(t_cub *cub, t_player *player)
@@ -86,7 +103,7 @@ void	render_minimap(t_cub *cub, t_player *player)
 				render_pixels(PIXELS, &cub->minimap, i, j, WHITE);
 		}
 	}
-	render_player(cub, player);
+	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
 		WIDTH - (cub->width_map * PIXELS), 0);
 }

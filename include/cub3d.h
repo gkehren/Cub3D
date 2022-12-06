@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/06 13:29:57 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/06 14:51:41 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # include <stdbool.h>
 
 /*=====DEFINE=====*/
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1260
+# define HEIGHT 800
 # define PIXELS 16
 # define NUM_RAYS 1
 # define PI 3.14159265
