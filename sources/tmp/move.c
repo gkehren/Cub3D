@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 23:06:49 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/06 13:32:09 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ void	move_camera_left(t_player *player)
 
 int	move_player(int keycode, t_cub *cub)
 {
-	t_player	bplayer;
-
-	bplayer = cub->player;
 	if (keycode == 115)
 		move_down(cub->map, &cub->player);
 	else if (keycode == 119)

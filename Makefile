@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
+#    By: genouf <genouf@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/12/05 12:29:50 by gkehren          ###   ########.fr        #
+#    Updated: 2022/12/06 11:37:02 by genouf           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ FILES:= cub3d utils/free \
 NAME:= cub3D
 
 # ------------------
-CC:=clang
+CC:=cc
 SRCPATH:=sources/
 HDRPATH:=include/
 CCHPATH:=obj/

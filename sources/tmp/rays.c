@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 23:08:36 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/06 13:32:16 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ void	cast_ray_left(t_cub *cub, float rayangle, t_ray *ray)
 int	cast_all_rays(t_cub *cub)
 {
 	int		i;
-	float	rayangle;
 
 	i = 0;
-	rayangle = 0;
 	while (i < NUM_RAYS)
 	{
 		i++;
