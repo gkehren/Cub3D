@@ -14,8 +14,6 @@
 
 void	init_player(t_cub *cub)
 {
-	cub->player.width = 1;
-	cub->player.height = 1;
 	if (cub->map[(int)cub->player.y][(int)cub->player.x] == 'N')
 	{
 		cub->player.turn_x = 0;
@@ -36,7 +34,9 @@ void	init_player(t_cub *cub)
 		cub->player.turn_x = 1;
 		cub->player.turn_y = 0;
 	}
-	cub->player.rotationangle = PI;
+	cub->player.rotationangle = -PI / 2;
+	cub->player.turnDirection = 0;
+	cub->player.walkDirection = 0;
 	cub->player.walkspeed = 0.17;
-	cub->player.turnspeed = 0.5;
+	cub->player.turnspeed = 0.02;
 }

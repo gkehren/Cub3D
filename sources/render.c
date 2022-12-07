@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 14:58:45 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:26:05 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,8 @@ void	render_rays(t_player *player, t_img *img)
 
 	begin.y = player->y * PIXELS;
 	begin.x = player->x * PIXELS;
-	printf("turn x : %f\n", player->turn_x);
-	printf("turn y : %f\n", player->turn_y);
-	end.x = begin.x + cos(PI / 2) * 30;
-	end.y = begin.y + sin(PI / 2) * 30;
-	// printf("begin x : %f\n", begin.x);
-	// printf("begin y : %f\n", begin.y);
-	// printf("cos : %f\n", cos(player->turn_x) * 20);
-	// printf("sin : %f\n", sin(player->turn_y) * 20);
-	// printf("end x : %f\n", end.x);
-	// printf("end y : %f\n", end.y);
-	// (void)img;
-	// (void)player;
+	end.x = begin.x + cos(player->rotationangle) * 60;
+	end.y = begin.y + sin(player->rotationangle) * 60;
 	print_line(begin, end, img);
 }
 

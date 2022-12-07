@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 14:54:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:20:23 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	move_camera_right(t_player *player)
 		- sin(-(player->turnspeed)) * player->turn_x;
 	player->turn_x = sin(-(player->turnspeed)) * bplayer.turn_y
 		+ cos(-(player->turnspeed)) * player->turn_x;
+	player->turnDirection = 1;
+	player->rotationangle += player->turnDirection * player->turnspeed;
 }
 
 void	move_camera_left(t_player *player)
@@ -64,6 +66,8 @@ void	move_camera_left(t_player *player)
 		- sin(player->turnspeed) * player->turn_x;
 	player->turn_x = sin(player->turnspeed) * bplayer.turn_y
 		+ cos(player->turnspeed) * player->turn_x;
+	player->turnDirection = -1;
+	player->rotationangle += player->turnDirection * player->turnspeed;
 }
 
 int	move_player(int keycode, t_cub *cub)
@@ -80,6 +84,7 @@ int	move_player(int keycode, t_cub *cub)
 		//move_left(cub->map, &cub->player);
 	if (keycode == 65307)
 		close_window(cub);
+	//cub->player.rotationangle += cub->player.turnDirection * cub->player.turnspeed;
 	printf("%f | %f\n", cub->player.x, cub->player.y);
 	render_minimap(cub, &cub->player);
 	return (0);

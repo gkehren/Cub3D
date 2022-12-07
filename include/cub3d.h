@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 12:51:47 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 15:06:54 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
-	double	width;
-	double	height;
 	double	turn_x;
 	double	turn_y;
+	double	turnDirection;
+	double 	walkDirection;
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
