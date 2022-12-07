@@ -27,13 +27,17 @@
 # define WIDTH 1260
 # define HEIGHT 800
 # define PIXELS 16
-# define NUM_RAYS 1
 # define PI 3.14159265
 # define IMG 4
 # define BLACK 0x5B5767
 # define WHITE 0x6C6877
 # define BLUE 0x1E90FF
 # define GREEN 0x32CD32
+
+/*=====RAY'S DEFINE=====*/
+# define FOV (60 * (PI / 180))
+# define WALL_STRIP_WIDTH 200
+# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
 typedef struct s_coord

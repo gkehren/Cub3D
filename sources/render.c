@@ -44,12 +44,21 @@ void	render_rays(t_player *player, t_img *img)
 {
 	t_coord	begin;
 	t_coord end;
+	double	rangle;
+	int		i;
 
 	begin.y = player->y * PIXELS;
 	begin.x = player->x * PIXELS;
-	end.x = begin.x + cos(player->rotationangle) * 60;
-	end.y = begin.y + sin(player->rotationangle) * 60;
-	print_line(begin, end, img);
+	rangle = player->rotationangle - (FOV / 2);
+	i = 0;
+	while (i < NUM_RAYS)
+	{
+		end.x = begin.x + cos(rangle) * 20;
+		end.y = begin.y + sin(rangle) * 20;
+		print_line(begin, end, img);
+		rangle += FOV / NUM_RAYS;
+		i++;
+	}
 }
 
 void	render_minimap(t_cub *cub, t_player *player)

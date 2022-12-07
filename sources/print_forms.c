@@ -67,8 +67,6 @@ void	print_line(t_coord begin, t_coord end, t_img *img)
 	i = 1;
 	while (i < 101)
 	{
-		// printf("print line x : %d\n", (int)(begin.x + (distance.x * i / 100)));
-		// printf("print line y : %d\n", (int)(begin.y + (distance.y * i / 100)));
 		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / 100)), (int)(begin.y + (distance.y * i / 100)), 0xff0000);
 		i++;		
 	}
