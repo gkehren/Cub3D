@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 15:26:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:51:09 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	render_rays(t_player *player, t_img *img)
 	i = 0;
 	while (i < NUM_RAYS)
 	{
-		end.x = begin.x + cos(rangle) * 20;
-		end.y = begin.y + sin(rangle) * 20;
+		end.x = begin.x + cos(rangle) * 100;
+		end.y = begin.y + sin(rangle) * 100;
 		print_line(begin, end, img);
 		rangle += FOV / NUM_RAYS;
 		i++;

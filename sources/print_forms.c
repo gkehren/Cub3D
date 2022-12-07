@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/07 14:36:15 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 18:02:12 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ void	print_square(int x, int y, int size, t_img *img)
 void	print_line(t_coord begin, t_coord end, t_img *img)
 {
 	t_coord	distance;
+	double	max_v;
 	int		i;
 
 	distance.x = end.x - begin.x;
 	distance.y = end.y - begin.y;
-	// Mettre la distance la plus grande au lieu de 100
-	// Coder des fonctions utiles en plus
+	max_v = max(fabs(distance.x), fabs(distance.y));
 	i = 1;
-	while (i < 101)
+	while (i < max_v + 1)
 	{
-		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / 100)), (int)(begin.y + (distance.y * i / 100)), 0xff0000);
+		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / max_v)), (int)(begin.y + (distance.y * i / max_v)), 0xff0000);
 		i++;		
 	}
 }

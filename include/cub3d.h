@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 15:06:54 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:53:27 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@
 # define PIXELS 16
 # define PI 3.14159265
 # define IMG 4
+
+/*=====COLOR'S DEFINE=====*/
 # define BLACK 0x5B5767
 # define WHITE 0x6C6877
 # define BLUE 0x1E90FF
 # define GREEN 0x32CD32
+# define RED 0xff0000
 
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
-# define WALL_STRIP_WIDTH 200
+# define WALL_STRIP_WIDTH 100
 # define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
@@ -139,6 +142,8 @@ size_t		ft_strlen(char *s);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_strchr(char *s, int c);
 void		free_double_tab(void **ptr);
+double		max(double a, double b);
+double		min(double a, double b);
 /*===============*/
 
 #endif
