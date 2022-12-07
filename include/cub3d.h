@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 17:58:02 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 18:43:03 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@
 # define WIDTH 1260
 # define HEIGHT 800
 # define PIXELS 32
-# define NUM_RAYS 1
-# define FOV_ANGLE 60 * (PI / 180)
 # define PI 3.14159265
 # define IMG 4
+
+/*=====COLOR'S DEFINE=====*/
 # define BLACK 0x5B5767
 # define WHITE 0x6C6877
 # define BLUE 0x1E90FF
 # define GREEN 0x32CD32
+# define RED 0xff0000
+
+/*=====RAY'S DEFINE=====*/
+# define FOV (60 * (PI / 180))
+# define WALL_STRIP_WIDTH 100
+# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
 typedef struct s_coord
@@ -137,6 +143,8 @@ size_t		ft_strlen(char *s);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_strchr(char *s, int c);
 void		free_double_tab(void **ptr);
+double		max(double a, double b);
+double		min(double a, double b);
 /*===============*/
 
 #endif
