@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 15:06:54 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 17:58:02 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@
 /*=====DEFINE=====*/
 # define WIDTH 1260
 # define HEIGHT 800
-# define PIXELS 16
+# define PIXELS 32
 # define NUM_RAYS 1
+# define FOV_ANGLE 60 * (PI / 180)
 # define PI 3.14159265
 # define IMG 4
 # define BLACK 0x5B5767
@@ -72,6 +73,7 @@ typedef struct s_ray
 	double	wallhitx;
 	double	wallhity;
 	double	distance;
+	bool	foundhorzWall;
 	int		washitvertical;
 	int		israyfacingup;
 	int		israyfacingdown;
@@ -107,9 +109,9 @@ void		generate_img(t_cub *cub);
 void		render_minimap(t_cub *cub, t_player *player);
 int			move_player(int keycode, t_cub *cub);
 void		init_rays(t_cub *cub);
-int			cast_all_rays(t_cub *cub);
 void		init_player(t_cub *cub);
 void		render_image(t_cub *cub, int n, int i, int j);
+void		dda(t_cub *cub, t_ray *ray);
 /*=================*/
 
 /*=====PARSING=====*/

@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 15:26:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 18:31:57 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,47 @@ void	render_pixels(int size, t_img *img, int y, int x, int color)
 	}
 }
 
-void	render_rays(t_player *player, t_img *img)
+void	init_rays(t_cub *cub)
+{
+	int	i;
+
+	i = 0;
+	cub->ray = (t_ray *)malloc(sizeof(t_ray) * NUM_RAYS);
+	while (i < NUM_RAYS)
+	{
+		cub->ray[i].distance = 0;
+		cub->ray[i].israyfacingdown = 0;
+		cub->ray[i].israyfacingleft = 0;
+		cub->ray[i].israyfacingright = 0;
+		cub->ray[i].israyfacingup = 0;
+		cub->ray[i].rayangle = cub->player.rotationangle - (FOV_ANGLE / 2);
+		cub->ray[i].wallhitcontent = 0;
+		cub->ray[i].wallhitx = 0;
+		cub->ray[i].wallhity = 0;
+		cub->ray[i].washitvertical = 0;
+		cub->ray[i].foundhorzWall = false;
+		i++;
+	}
+}
+
+void	render_rays(t_cub *cub, t_player *player, t_img *img)
 {
 	t_coord	begin;
 	t_coord end;
 
 	begin.y = player->y * PIXELS;
 	begin.x = player->x * PIXELS;
+	cub->ray[0].distance = 0;
+	cub->ray[0].israyfacingdown = 0;
+	cub->ray[0].israyfacingleft = 0;
+	cub->ray[0].israyfacingright = 0;
+	cub->ray[0].israyfacingup = 0;
+	cub->ray[0].wallhitcontent = 0;
+	cub->ray[0].wallhitx = 0;
+	cub->ray[0].wallhity = 0;
+	cub->ray[0].rayangle += FOV_ANGLE / NUM_RAYS;
+	cub->ray[0].foundhorzWall = false;
+	dda(cub, &cub->ray[0]);
 	end.x = begin.x + cos(player->rotationangle) * 60;
 	end.y = begin.y + sin(player->rotationangle) * 60;
 	print_line(begin, end, img);
@@ -72,8 +106,9 @@ void	render_minimap(t_cub *cub, t_player *player)
 				render_pixels(PIXELS, &cub->minimap, i, j, WHITE);
 		}
 	}
+	cub->ray[i].rayangle = cub->player.rotationangle - (FOV_ANGLE / 2);
 	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
-	render_rays(player, &cub->minimap);
+	render_rays(cub ,player, &cub->minimap);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
 		WIDTH - (cub->width_map * PIXELS), 0);
 }
