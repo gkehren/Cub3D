@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:27 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 11:10:21 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 14:50:300 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ void	init_player(t_cub *cub)
 {
 	cub->player.width = 1;
 	cub->player.height = 1;
-	if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'N')
-	{
-		cub->player.turn_x = 1;
-		cub->player.turn_y = 0;
-	}
-	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'S')
-	{
-		cub->player.turn_x = -1;
-		cub->player.turn_y = 0;
-	}
-	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'W')
+	if (cub->map[(int)cub->player.y][(int)cub->player.x] == 'N')
 	{
 		cub->player.turn_x = 0;
 		cub->player.turn_y = 1;
 	}
-	else if (cub->map[(int)cub->player.x][(int)cub->player.y] == 'E')
+	else if (cub->map[(int)cub->player.y][(int)cub->player.x] == 'S')
 	{
 		cub->player.turn_x = 0;
 		cub->player.turn_y = -1;
+	}
+	else if (cub->map[(int)cub->player.y][(int)cub->player.x] == 'W')
+	{
+		cub->player.turn_x = -1;
+		cub->player.turn_y = 0;
+	}
+	else if (cub->map[(int)cub->player.y][(int)cub->player.x] == 'E')
+	{
+		cub->player.turn_x = 1;
+		cub->player.turn_y = 0;
 	}
 	cub->player.rotationangle = PI;
 	cub->player.walkspeed = 0.17;

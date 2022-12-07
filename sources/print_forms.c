@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/07 13:02:48 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 14:36:15 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	print_square(int x, int y, int size, t_img *img)
 		tmp = y;
 		while (tmp < end_line)
 		{
-			my_mlx_pixel_put(img, tmp, x, BLUE);
+			my_mlx_pixel_put(img, x, tmp, BLUE);
 			tmp++;
 		}
 		x++;
@@ -58,7 +58,6 @@ void	print_square(int x, int y, int size, t_img *img)
 void	print_line(t_coord begin, t_coord end, t_img *img)
 {
 	t_coord	distance;
-	int		max;
 	int		i;
 
 	distance.x = end.x - begin.x;
