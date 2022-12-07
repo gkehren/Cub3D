@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 16:50:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 00:44:26 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	move_down(char **map, t_player *player)
 void	move_up(char **map, t_player *player)
 {
 	if (map[(int)player->y][(int)(player->x - player->walkspeed
-			* player->turn_x)] != '1')
+		* player->turn_x)] != '1')
 		player->x -= player->walkspeed * player->turn_x;
 	if (map[(int)(player->y - player->walkspeed
 			* player->turn_y)][(int)(player->x)] != '1')
@@ -53,8 +53,8 @@ void	move_camera_right(t_player *player)
 		- sin(-(player->turnspeed)) * player->turn_x;
 	player->turn_x = sin(-(player->turnspeed)) * bplayer.turn_y
 		+ cos(-(player->turnspeed)) * player->turn_x;
-	player->turnDirection = 1;
-	player->rotationangle += player->turnDirection * player->turnspeed;
+	player->turndirection = 1;
+	player->rotationangle += player->turndirection * player->turnspeed;
 }
 
 void	move_camera_left(t_player *player)
@@ -66,8 +66,8 @@ void	move_camera_left(t_player *player)
 		- sin(player->turnspeed) * player->turn_x;
 	player->turn_x = sin(player->turnspeed) * bplayer.turn_y
 		+ cos(player->turnspeed) * player->turn_x;
-	player->turnDirection = -1;
-	player->rotationangle += player->turnDirection * player->turnspeed;
+	player->turndirection = -1;
+	player->rotationangle += player->turndirection * player->turnspeed;
 }
 
 int	move_player(int keycode, t_cub *cub)
@@ -78,13 +78,10 @@ int	move_player(int keycode, t_cub *cub)
 		move_up(cub->map, &cub->player);
 	else if (keycode == 100)
 		move_camera_right(&cub->player);
-		//move_right(cub->map, &cub->player);
 	else if (keycode == 97)
 		move_camera_left(&cub->player);
-		//move_left(cub->map, &cub->player);
 	if (keycode == 65307)
 		close_window(cub);
-	//printf("%f | %f\n", cub->player.x, cub->player.y);
 	render_minimap(cub, &cub->player);
 	return (0);
 }

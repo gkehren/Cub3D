@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_forms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/07 18:02:12 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 00:30:59 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	print_line(t_coord begin, t_coord end, t_img *img)
 	i = 1;
 	while (i < max_v + 1)
 	{
-		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / max_v)), (int)(begin.y + (distance.y * i / max_v)), 0xff0000);
-		i++;		
+		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / max_v)),
+			(int)(begin.y + (distance.y * i / max_v)), 0xff0000);
+		i++;
 	}
 }

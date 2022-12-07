@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 18:43:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 00:44:05 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
+
+/*=====TODO=====*/
+// - faire plusieurs .h
 
 /*=====DEFINE=====*/
 # define WIDTH 1260
@@ -40,12 +43,13 @@
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
 # define WALL_STRIP_WIDTH 100
-# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
+//# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
+# define NUM_RAYS WIDTH
 
 /*=====STRUCT=====*/
 typedef struct s_coord
 {
-	double 	x;
+	double	x;
 	double	y;
 }	t_coord;
 
@@ -66,8 +70,8 @@ typedef struct s_player
 	double	y;
 	double	turn_x;
 	double	turn_y;
-	double	turnDirection;
-	double 	walkDirection;
+	double	turndirection;
+	double	walkdirection;
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
@@ -76,16 +80,19 @@ typedef struct s_player
 typedef struct s_ray
 {
 	double	rayangle;
-	double	wallhitx;
-	double	wallhity;
+	double	horzwallhitx;
+	double	horzwallhity;
+	double	vertwallhitx;
+	double	vertwallhity;
 	double	distance;
-	bool	foundhorzWall;
-	int		washitvertical;
+	bool	foundhorzwall;
+	bool	foundvertwall;
 	int		israyfacingup;
 	int		israyfacingdown;
 	int		israyfacingleft;
 	int		israyfacingright;
-	int		wallhitcontent;
+	int		horzwallhitcontent;
+	int		vertwallhitcontent;
 }	t_ray;
 
 typedef struct s_cub
@@ -117,7 +124,10 @@ int			move_player(int keycode, t_cub *cub);
 void		init_rays(t_cub *cub);
 void		init_player(t_cub *cub);
 void		render_image(t_cub *cub, int n, int i, int j);
-void		dda(t_cub *cub, t_ray *ray);
+/*=====INTERSECTIONS=====*/
+double		dda(t_cub *cub, t_ray *ray);
+void		where_ray_facing(t_ray *ray);
+bool		has_wall_at(t_cub *cub, double x, double y);
 /*=================*/
 
 /*=====PARSING=====*/
@@ -135,6 +145,7 @@ char		*ft_strcpy_texture(char *dst, char *src);
 void		print_cross(int x, int y, t_img *img);
 void		print_square(int x, int y, int size, t_img *img);
 void		print_line(t_coord begin, t_coord end, t_img *img);
+double		distance(t_coord begin, t_coord end);
 /*=================*/
 
 /*=====UTILS=====*/
