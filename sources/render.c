@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 09:59:27 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 13:00:09 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,32 @@ void	render_pixels(int size, t_img *img, int x, int y, int color)
 	}
 }
 
+void	render_rays(t_player *player, t_img *img)
+{
+	t_coord	begin;
+	t_coord end;
+
+	begin.y = player->x * PIXELS;
+	begin.x = player->y * PIXELS;
+	printf("turn x : %f\n", player->turn_x);
+	printf("turn y : %f\n", player->turn_y);
+	end.x = begin.x + cos(player->turn_x) * 400;
+	end.y = begin.y + sin(player->turn_y) * 400;
+	// begin.x = 0;
+	// begin.y = 0;
+	// end.x = 0;
+	// end.y = 100;
+	printf("begin x : %f\n", begin.x);
+	printf("begin y : %f\n", begin.y);
+	printf("cos : %f\n", cos(player->turn_x) * 20);
+	printf("sin : %f\n", sin(player->turn_y) * 20);
+	printf("end x : %f\n", end.x);
+	printf("end y : %f\n", end.y);
+	// (void)img;
+	// (void)player;
+	print_line(begin, end, img);
+}
+
 void	render_minimap(t_cub *cub, t_player *player)
 {
 	int	i;
@@ -61,6 +87,7 @@ void	render_minimap(t_cub *cub, t_player *player)
 		}
 	}
 	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
+	render_rays(player, &cub->minimap);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
 		WIDTH - (cub->width_map * PIXELS), 0);
 }

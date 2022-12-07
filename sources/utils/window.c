@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 10:00:11 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 12:54:11 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	init_window(t_cub *cub)
 	init_rays(cub);
 	cub->minimap.img = mlx_new_image(cub->mlx,
 			cub->width_map * PIXELS, cub->height_map * PIXELS);
+	cub->minimap.width = cub->width_map * PIXELS;
+	cub->minimap.height = cub->height_map * PIXELS;
 	render_minimap(cub, &cub->player);
 	mlx_hook(cub->win, 2, 1L << 0, move_player, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);
