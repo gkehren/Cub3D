@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 00:39:38 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/07 09:58:49 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,11 @@ int			check_path(char *file);
 char		**get_map(char *file);
 bool		get_texture(t_cub *cub, char **map, int start);
 char		*ft_strcpy_texture(char *dst, char *src);
+/*=================*/
+
+/*=====PRINT_FORMS=====*/
+void		print_cross(int x, int y, t_img *img);
+void		print_square(int x, int y, int size, t_img *img);
 /*=================*/
 
 /*=====UTILS=====*/

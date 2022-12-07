@@ -6,11 +6,11 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/06 20:13:30 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 09:59:27 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../include/cub3d.h"
 
 void	render_image(t_cub *cub, int n, int i, int j)
 {
@@ -37,49 +37,6 @@ void	render_pixels(int size, t_img *img, int x, int y, int color)
 			j++;
 		}
 		i++;
-	}
-}
-
-void	print_cross(int x, int y, t_img *img)
-{
-	int	begin;
-	int	aled;
-
-	begin = x - 3;
-	aled = begin + 7;
-	while (begin < aled)
-	{
-		my_mlx_pixel_put(img, y, begin, BLUE);
-		begin++;
-	}
-	begin = y - 3;
-	aled = begin + 7;
-	while (begin < aled)
-	{
-		my_mlx_pixel_put(img, begin, x, BLUE);
-		begin++;
-	}
-}
-
-void	print_square(int x, int y, int size, t_img *img)
-{
-	int	end_col;
-	int	end_line;
-	int	tmp;
-
-	end_col = x + (size / 2);
-	end_line = y + (size / 2);
-	x -= (size / 2);
-	y -= (size / 2);
-	while (x < end_col)
-	{
-		tmp = y;
-		while (tmp < end_line)
-		{
-			my_mlx_pixel_put(img, tmp, x, BLUE);
-			tmp++;
-		}
-		x++;
 	}
 }
 

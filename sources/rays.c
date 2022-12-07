@@ -6,11 +6,11 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/06 13:32:16 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/07 09:59:27 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../include/cub3d.h"
 
 void	init_rays(t_cub *cub)
 {
