@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 11:05:40 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 11:36:13 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ typedef struct s_coord
 	double	x;
 	double	y;
 }	t_coord;
+
+typedef struct s_dimension
+{
+	int	width;
+	int	height;
+}	t_dim;
 
 typedef struct s_img
 {
@@ -124,7 +130,6 @@ void		render_minimap(t_cub *cub, t_player *player);
 int			move_player(int keycode, t_cub *cub);
 void		init_rays(t_cub *cub);
 void		init_player(t_cub *cub);
-void		render_image(t_cub *cub, int n, int i, int j);
 /*=====INTERSECTIONS=====*/
 double		dda(t_cub *cub, t_ray *ray);
 void		where_ray_facing(t_ray *ray);
@@ -146,7 +151,7 @@ char		*ft_strcpy_texture(char *dst, char *src);
 void		print_cross(int x, int y, t_img *img);
 void		print_square(int x, int y, int size, t_img *img);
 void		print_line(t_coord begin, t_coord end, t_img *img);
-void		print_rectangle(t_coord begin, int width, int height, t_img *img, int color);
+void		print_rectangle(t_coord begin, t_dim dim, t_img *img, int color);
 double		distance(t_coord begin, t_coord end);
 /*=================*/
 

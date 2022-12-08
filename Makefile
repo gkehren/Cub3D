@@ -6,13 +6,13 @@
 #    By: genouf <genouf@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/12/08 08:30:35 by genouf           ###   ########.fr        #
+#    Updated: 2022/12/08 11:40:36 by genouf           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES:= cub3d utils/free \
 		parsing/parse parsing/get_next_line parsing/get_next_line_utils parsing/check_map parsing/get_map parsing/get_texture \
-		utils/window utils/image move render player print_forms utils/intersections utils/intersections_utils utils/utils projection
+		utils/window utils/image move render player print_forms utils/intersections utils/intersections_utils utils/utils
 
 NAME:= cub3D
 

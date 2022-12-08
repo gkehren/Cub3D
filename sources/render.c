@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 11:01:03 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 11:39:14 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,62 +34,26 @@ void	render_pixels(int size, t_img *img, t_coord p, int color)
 	}
 }
 
-void	init_rays(t_cub *cub)
-{
-	int	i;
-
-	i = 0;
-	cub->ray = (t_ray *)malloc(sizeof(t_ray) * NUM_RAYS);
-	while (i < NUM_RAYS)
-	{
-		cub->ray[i].distance = 0;
-		cub->ray[i].israyfacingdown = 0;
-		cub->ray[i].israyfacingleft = 0;
-		cub->ray[i].israyfacingright = 0;
-		cub->ray[i].israyfacingup = 0;
-		cub->ray[i].rayangle = cub->player.rotationangle - (FOV / 2);
-		cub->ray[i].vertwallhitcontent = 0;
-		cub->ray[i].vertwallhitx = 0;
-		cub->ray[i].vertwallhity = 0;
-		cub->ray[i].horzwallhitcontent = 0;
-		cub->ray[i].horzwallhitx = 0;
-		cub->ray[i].horzwallhity = 0;
-		cub->ray[i].foundhorzwall = false;
-		cub->ray[i].foundvertwall = false;
-		i++;
-	}
-}
-
-void	reinit_ray(t_ray *ray, double rangle)
-{
-	ray->israyfacingdown = 0;
-	ray->israyfacingleft = 0;
-	ray->israyfacingright = 0;
-	ray->israyfacingup = 0;
-	ray->horzwallhitx = 0;
-	ray->horzwallhity = 0;
-	ray->vertwallhitx = 0;
-	ray->vertwallhity = 0;
-	ray->rayangle = rangle;
-}
-
 void	projection(t_cub *cub, double ray_dist, int idcol)
 {
 	double	distance_proj_plane;
-	double	wallStripHeight;
+	double	wall_strip_height;
 	t_coord	begin;
 	t_coord	begin2;
-	
+
 	distance_proj_plane = (WIDTH / 2) / tan(FOV / 2);
-	wallStripHeight = (PIXELS / ray_dist) * distance_proj_plane;
+	wall_strip_height = (PIXELS / ray_dist) * distance_proj_plane;
 	begin.x = idcol * WALL_STRIP_WIDTH;
-	begin.y = (HEIGHT / 2) - (wallStripHeight / 2);
-	print_rectangle(begin, WALL_STRIP_WIDTH, wallStripHeight, &cub->game, GREEN);
+	begin.y = (HEIGHT / 2) - (wall_strip_height / 2);
+	print_rectangle(begin, (t_dim){WALL_STRIP_WIDTH, wall_strip_height},
+		&cub->game, GREEN);
 	begin2.x = begin.x;
 	begin2.y = 0;
-	print_rectangle(begin2, WALL_STRIP_WIDTH, begin.y, &cub->game, BLUE);
-	begin2.y = begin.y + wallStripHeight;
-	print_rectangle(begin2, WALL_STRIP_WIDTH, HEIGHT - begin2.y, &cub->game, RED);
+	print_rectangle(begin2, (t_dim){WALL_STRIP_WIDTH, begin.y},
+		&cub->game, BLUE);
+	begin2.y = begin.y + wall_strip_height;
+	print_rectangle(begin2, (t_dim){WALL_STRIP_WIDTH, HEIGHT - begin2.y},
+		&cub->game, RED);
 }
 
 void	render_rays(t_cub *cub, t_player *player)
@@ -117,7 +81,6 @@ void	render_rays(t_cub *cub, t_player *player)
 		i++;
 	}
 }
-
 
 void	render_minimap(t_cub *cub, t_player *player)
 {
