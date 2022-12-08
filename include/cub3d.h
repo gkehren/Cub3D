@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 17:54:59 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 22:46:50 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
+#include <X11/keysym.h>
 
 /*=====DEFINE=====*/
 # define WIDTH 1920
