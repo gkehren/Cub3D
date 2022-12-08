@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 15:15:48 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:07:47 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
-# define WALL_STRIP_WIDTH 1
+# define WALL_STRIP_WIDTH 4
 # define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
@@ -139,6 +139,7 @@ bool		map_close(char **map);
 bool		check_char_map(char **map, t_cub *cub);
 int			check_path(char *file);
 char		**get_map(char *file);
+int			get_max(char **map);
 bool		get_texture(t_cub *cub, char **map, int start);
 char		*ft_strcpy_texture(char *dst, char *src);
 /*=================*/
@@ -152,8 +153,8 @@ double		distance(t_coord begin, t_coord end);
 /*=================*/
 
 /*=====INIT=====*/
-void	init_rays(t_cub *cub);
-void	reinit_ray(t_ray *ray, double rangle);
+void		init_rays(t_cub *cub);
+void		reinit_ray(t_ray *ray, double rangle);
 /*=================*/
 
 /*=====UTILS=====*/

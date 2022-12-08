@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/05 17:35:25 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:07:01 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,23 @@ char	**copy_second(char **map, char **pmap, int j, int nb_line)
 {
 	int	n;
 	int	i;
+	int	len_max;
 
 	n = 0;
+	len_max = get_max(pmap);
 	while (j < nb_line)
 	{
 		i = 0;
-		map[n] = (char *)malloc(sizeof(char) * ft_strlen(pmap[j]));
+		map[n] = (char *)malloc(sizeof(char) * len_max + 1);
 		while (pmap[j][i] != '\n' && pmap[j][i])
 		{
 			map[n][i] = pmap[j][i];
+			if (map[n][i] == ' ')
+				map[n][i] = '1';
 			i++;
 		}
+		while (i < len_max)
+			map[n][i++] = '1';
 		map[n][i] = '\0';
 		j++;
 		n++;

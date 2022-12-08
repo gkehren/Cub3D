@@ -6,11 +6,27 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:44:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/11/26 15:48:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:07:05 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	get_max(char **map)
+{
+	int	j;
+	int	max;
+
+	j = 0;
+	max = 0;
+	while (map[j])
+	{
+		if ((int)ft_strlen(map[j]) > max)
+			max = ft_strlen(map[j]);
+		j++;
+	}
+	return (max);
+}
 
 int	ft_atoi_rgb(char *str)
 {
