@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_forms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/08 00:30:59 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 10:58:11 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,26 @@ void	print_line(t_coord begin, t_coord end, t_img *img)
 		my_mlx_pixel_put(img, (int)(begin.x + (distance.x * i / max_v)),
 			(int)(begin.y + (distance.y * i / max_v)), 0xff0000);
 		i++;
+	}
+}
+
+void	print_rectangle(t_coord begin, int width, int height, t_img *img, int color)
+{
+	t_coord	end;
+	double	x;
+	double	y;
+
+	end.x = begin.x + width;
+	end.y = begin.y + height;
+	y = begin.y;
+	while (y < end.y)
+	{
+		x = begin.x;
+		while (x < end.x)
+		{
+			my_mlx_pixel_put(img, x, y, color);
+			x++;
+		}
+		y++;
 	}
 }

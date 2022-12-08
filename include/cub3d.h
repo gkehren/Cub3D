@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 00:44:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 11:05:40 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 // - faire plusieurs .h
 
 /*=====DEFINE=====*/
-# define WIDTH 1260
-# define HEIGHT 800
-# define PIXELS 32
+# define WIDTH 1920
+# define HEIGHT 1080
+# define PIXELS 16
 # define PI 3.14159265
 # define IMG 4
 
@@ -42,9 +42,9 @@
 
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
-# define WALL_STRIP_WIDTH 100
-//# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
-# define NUM_RAYS WIDTH
+# define WALL_STRIP_WIDTH 1
+# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
+// # define NUM_RAYS WIDTH
 
 /*=====STRUCT=====*/
 typedef struct s_coord
@@ -104,6 +104,7 @@ typedef struct s_cub
 	int			height_map;
 	t_img		*img;
 	t_img		minimap;
+	t_img		game;
 	t_player	player;
 	t_ray		*ray;
 	char		*path_no;
@@ -145,6 +146,7 @@ char		*ft_strcpy_texture(char *dst, char *src);
 void		print_cross(int x, int y, t_img *img);
 void		print_square(int x, int y, int size, t_img *img);
 void		print_line(t_coord begin, t_coord end, t_img *img);
+void		print_rectangle(t_coord begin, int width, int height, t_img *img, int color);
 double		distance(t_coord begin, t_coord end);
 /*=================*/
 
