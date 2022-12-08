@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 12:19:07 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 12:54:37 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
-
-/*=====TODO=====*/
-// - faire plusieurs .h
 
 /*=====DEFINE=====*/
 # define WIDTH 1920
@@ -44,7 +41,6 @@
 # define FOV (60 * (PI / 180))
 # define WALL_STRIP_WIDTH 1
 # define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
-// # define NUM_RAYS WIDTH
 
 /*=====STRUCT=====*/
 typedef struct s_coord

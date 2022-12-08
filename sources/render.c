@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 12:28:46 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 13:02:30 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void	projection(t_cub *cub, double ray_dist, int idcol)
 	begin2.x = begin.x;
 	begin2.y = 0;
 	print_rectangle(begin2, (t_dim){WALL_STRIP_WIDTH, begin.y},
-		&cub->game, BLUE);
+		&cub->game, (cub->rgb_ceiling[0] << 16) + (cub->rgb_ceiling[1] << 8)
+		+ cub->rgb_ceiling[2]);
 	begin2.y = begin.y + wall_strip_height;
 	print_rectangle(begin2, (t_dim){WALL_STRIP_WIDTH, HEIGHT - begin2.y},
-		&cub->game, RED);
+		&cub->game, (cub->rgb_floor[0] << 16) + (cub->rgb_floor[1] << 8)
+		+ cub->rgb_floor[2]);
 }
 
 void	render_rays(t_cub *cub, t_player *player)
