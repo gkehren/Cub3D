@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 17:07:47 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:54:59 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void		init_player(t_cub *cub);
 /*=====INTERSECTIONS=====*/
 double		dda(t_cub *cub, t_ray *ray);
 void		where_ray_facing(t_ray *ray);
+double		return_ray(t_cub *cub, t_ray *ray);
 bool		has_wall_at(t_cub *cub, double x, double y);
 /*=================*/
 

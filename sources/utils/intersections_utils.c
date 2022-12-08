@@ -6,11 +6,34 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:24:32 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 00:26:43 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 17:54:47 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+double	return_ray(t_cub *cub, t_ray *ray)
+{
+	if (ray->foundhorzwall == false)
+		return (distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->vertwallhitx, ray->vertwallhity}));
+	else if (ray->foundvertwall == false)
+		return (distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->horzwallhitx, ray->horzwallhity}));
+	if (distance((t_coord){cub->player.x * PIXELS, cub->player.y * PIXELS},
+		(t_coord){ray->vertwallhitx, ray->vertwallhity})
+		> distance((t_coord){cub->player.x * PIXELS, cub->player.y * PIXELS},
+		(t_coord){ray->horzwallhitx, ray->horzwallhity}))
+		return (distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->horzwallhitx, ray->horzwallhity}));
+	else
+		return (distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->vertwallhitx, ray->vertwallhity}));
+}
 
 void	where_ray_facing(t_ray *ray)
 {
