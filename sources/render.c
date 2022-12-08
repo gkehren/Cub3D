@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 11:39:14 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 12:28:46 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	render_rays(t_cub *cub, t_player *player)
 	while (i < NUM_RAYS)
 	{
 		reinit_ray(&cub->ray[i], rangle);
-		dist = dda(cub, &cub->ray[i]);
+		dist = dda(cub, &cub->ray[i]) * cos(rangle - player->rotationangle);
 		end.x = begin.x + cos(cub->ray[i].rayangle) * dist;
 		end.y = begin.y + sin(cub->ray[i].rayangle) * dist;
 		print_line(begin, end, &cub->minimap);

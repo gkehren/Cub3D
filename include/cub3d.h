@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 11:36:13 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 12:19:07 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,11 @@ void		print_square(int x, int y, int size, t_img *img);
 void		print_line(t_coord begin, t_coord end, t_img *img);
 void		print_rectangle(t_coord begin, t_dim dim, t_img *img, int color);
 double		distance(t_coord begin, t_coord end);
+/*=================*/
+
+/*=====INIT=====*/
+void	init_rays(t_cub *cub);
+void	reinit_ray(t_ray *ray, double rangle);
 /*=================*/
 
 /*=====UTILS=====*/
