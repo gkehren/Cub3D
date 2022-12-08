@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 11:27:34 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 16:18:43 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	close_window(t_cub *cub)
 		mlx_destroy_image(cub->mlx, cub->img[i++].img);
 	mlx_destroy_image(cub->mlx, cub->minimap.img);
 	free(cub->img);
+	mlx_destroy_image(cub->mlx, cub->game.img);
 	mlx_destroy_window(cub->mlx, cub->win);
 	mlx_destroy_display(cub->mlx);
 	free(cub->mlx);
