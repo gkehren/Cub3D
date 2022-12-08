@@ -6,43 +6,31 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 00:44:26 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:52:58 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	move_down(char **map, t_player *player)
+void	move_down(t_player *player, t_cub *cub)
 {
-	if (map[(int)(player->y + player->walkspeed
-			* player->turn_y)][(int)player->x] != '1')
+	if (has_wall_at(cub, PIXELS * (player->x + player->walkspeed
+				* player->turn_x), PIXELS * player->y) == false)
 		player->x += player->walkspeed * player->turn_x;
-	if (map[(int)(player->y)][(int)(player->x + player->turn_x
-				* player->walkspeed)] != '1')
+	if (has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
+				+ player->walkspeed * player->turn_y)) == false)
 		player->y += player->walkspeed * player->turn_y;
 }
 
-void	move_up(char **map, t_player *player)
+void	move_up(t_player *player, t_cub *cub)
 {
-	if (map[(int)player->y][(int)(player->x - player->walkspeed
-		* player->turn_x)] != '1')
+	if (has_wall_at(cub, PIXELS * (player->x - player->walkspeed
+				* player->turn_x), PIXELS * player->y) == false)
 		player->x -= player->walkspeed * player->turn_x;
-	if (map[(int)(player->y - player->walkspeed
-			* player->turn_y)][(int)(player->x)] != '1')
+	if (has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
+				- player->walkspeed * player->turn_y)) == false)
 		player->y -= player->walkspeed * player->turn_y;
 }
-
-//void	move_right(char **map, t_player *player)
-//{
-//	if (map[(int)(player->x)][(int)(player->y + player->walkspeed)] != '1')
-//		player->y += player->walkspeed;
-//}
-
-//void	move_left(char **map, t_player *player)
-//{
-//	if (map[(int)player->x][(int)(player->y - player->walkspeed)] != '1')
-//		player->y -= player->walkspeed;
-//}
 
 void	move_camera_right(t_player *player)
 {
@@ -73,9 +61,9 @@ void	move_camera_left(t_player *player)
 int	move_player(int keycode, t_cub *cub)
 {
 	if (keycode == 115)
-		move_down(cub->map, &cub->player);
+		move_down(&cub->player, cub);
 	else if (keycode == 119)
-		move_up(cub->map, &cub->player);
+		move_up(&cub->player, cub);
 	else if (keycode == 100)
 		move_camera_right(&cub->player);
 	else if (keycode == 97)

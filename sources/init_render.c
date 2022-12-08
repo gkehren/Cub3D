@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:38:59 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/08 11:39:20 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/08 15:37:28 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,18 @@ void	init_rays(t_cub *cub)
 
 void	reinit_ray(t_ray *ray, double rangle)
 {
+	ray->distance = 0;
 	ray->israyfacingdown = 0;
 	ray->israyfacingleft = 0;
 	ray->israyfacingright = 0;
 	ray->israyfacingup = 0;
-	ray->horzwallhitx = 0;
-	ray->horzwallhity = 0;
+	ray->vertwallhitcontent = 0;
 	ray->vertwallhitx = 0;
 	ray->vertwallhity = 0;
+	ray->horzwallhitcontent = 0;
+	ray->horzwallhitx = 0;
+	ray->horzwallhity = 0;
+	ray->foundhorzwall = false;
+	ray->foundvertwall = false;
 	ray->rayangle = rangle;
 }
