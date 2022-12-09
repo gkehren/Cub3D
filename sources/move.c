@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 23:33:32 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:28:19 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 void	move_up(t_player *player, t_cub *cub)
 {
+	player->update = true;
 	if (has_wall_at(cub, PIXELS * (player->x - player->walkspeed
 				* player->turn_x), PIXELS * player->y) == false)
 		player->x -= player->walkspeed * player->turn_x;
+	else
+		player->update = false;
 	if (has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
 				- player->walkspeed * player->turn_y)) == false)
 		player->y -= player->walkspeed * player->turn_y;
+	else
+		player->update = false;
 }
 
 void	move_down(t_player *player, t_cub *cub)
 {
+	player->update = true;
 	if (has_wall_at(cub, PIXELS * (player->x + player->walkspeed
 				* player->turn_x), PIXELS * player->y) == false)
 		player->x += player->walkspeed * player->turn_x;
@@ -37,6 +43,7 @@ void	move_camera_right(t_player *player)
 	t_player	bplayer;
 
 	bplayer = *player;
+	player->update = true;
 	player->turn_y = cos(-(player->turnspeed)) * player->turn_y
 		- sin(-(player->turnspeed)) * player->turn_x;
 	player->turn_x = sin(-(player->turnspeed)) * bplayer.turn_y
@@ -50,6 +57,7 @@ void	move_camera_left(t_player *player)
 	t_player	bplayer;
 
 	bplayer = *player;
+	player->update = true;
 	player->turn_y = cos(player->turnspeed) * player->turn_y
 		- sin(player->turnspeed) * player->turn_x;
 	player->turn_x = sin(player->turnspeed) * bplayer.turn_y

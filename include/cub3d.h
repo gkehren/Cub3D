@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 18:23:21 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 18:39:39 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_player
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
+	bool	update;
 }	t_player;
 
 typedef struct s_ray

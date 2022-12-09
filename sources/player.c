@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 16:41:27 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 15:52:07 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:22:28 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	init_player(t_cub *cub)
 {
 	set_orientation_player(cub);
 	cub->map[(int)cub->player.y][(int)cub->player.x] = '0';
+	cub->player.update = true;
 	cub->player.walkspeed = 0.17;
 	cub->player.turnspeed = 0.02;
 }
