@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:24:32 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 15:49:56 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:48:55 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ double	return_ray(t_cub *cub, t_ray *ray)
 		(t_coord){ray->vertwallhitx, ray->vertwallhity})
 		> distance((t_coord){cub->player.x * PIXELS, cub->player.y * PIXELS},
 		(t_coord){ray->horzwallhitx, ray->horzwallhity}))
+	{
+		ray->closest = 0;
 		return (distance((t_coord){cub->player.x * PIXELS,
 				cub->player.y * PIXELS},
 			(t_coord){ray->horzwallhitx, ray->horzwallhity}));
+	}
 	else
+	{
+		ray->closest = 1;
 		return (distance((t_coord){cub->player.x * PIXELS,
 				cub->player.y * PIXELS},
 			(t_coord){ray->vertwallhitx, ray->vertwallhity}));
+	}
 }
 
 void	where_ray_facing(t_ray *ray)

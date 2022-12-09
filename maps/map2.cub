@@ -1,7 +1,7 @@
-NO ./assets/argentine.xpm
-SO ./assets/bresil.xpm
-WE ./assets/france.xpm
-EA ./assets/portugal.xpm
+NO ./assets/brick.xpm
+SO ./assets/blue.xpm
+WE ./assets/grey.xpm
+EA ./assets/wood.xpm
 
 F 220,100,0
 C 225,30,0

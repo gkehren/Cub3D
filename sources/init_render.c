@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:38:59 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/08 15:37:28 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:49:29 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_rays(t_cub *cub)
 		cub->ray[i].horzwallhity = 0;
 		cub->ray[i].foundhorzwall = false;
 		cub->ray[i].foundvertwall = false;
+		cub->ray[i].closest = 0;
 		i++;
 	}
 }
@@ -54,4 +55,5 @@ void	reinit_ray(t_ray *ray, double rangle)
 	ray->foundhorzwall = false;
 	ray->foundvertwall = false;
 	ray->rayangle = rangle;
+	ray->closest = 0;
 }

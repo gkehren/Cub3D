@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 18:38:45 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 18:52:05 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_pixels(int size, t_img *img, t_coord p, int color)
 	}
 }
 
-void	projection(t_cub *cub, int idcol)
+void	projection(t_cub *cub, t_ray *ray, int idcol)
 {
 	double	distance_proj_plane;
 	double	wall_strip_height;
@@ -44,21 +44,21 @@ void	projection(t_cub *cub, int idcol)
 	t_img	txt;
 
 	distance_proj_plane = (WIDTH / 2) / tan(FOV / 2);
-	wall_strip_height = (PIXELS / cub->ray[idcol].distance) * distance_proj_plane;
+	wall_strip_height = (PIXELS / ray->distance) * distance_proj_plane;
 	begin.x = idcol * WALL_STRIP_WIDTH;
 	begin.y = (HEIGHT / 2) - (wall_strip_height / 2);
-	if (cub->ray->foundhorzwall == 1)
+	if (ray->foundhorzwall == true && ray->closest == 0)
 	{
-		offset = (int)floor(cub->ray[idcol].horzwallhitx) % PIXELS;
-		if (cub->ray[idcol].israyfacingup == 1)
+		offset = (int)floor(ray->horzwallhitx) % PIXELS;
+		if (ray->israyfacingup == 1)
 			txt = cub->img[0];
 		else
 			txt = cub->img[1];
-	}	
+	}
 	else
 	{
-		offset = (int)floor(cub->ray[idcol].vertwallhity) % PIXELS;
-		if (cub->ray[idcol].israyfacingleft == 1)
+		offset = (int)floor(ray->vertwallhity) % PIXELS;
+		if (ray->israyfacingleft == 1)
 			txt = cub->img[2];
 		else
 			txt = cub->img[3];
@@ -95,7 +95,7 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 		end.y = begin.y + sin(cub->ray[i].rayangle) * cub->ray[i].distance;
 		print_line(begin, end, &cub->minimap);
 		my_mlx_pixel_put(&cub->game, 100, 100, RED);
-		projection(cub, i);
+		projection(cub, &cub->ray[i], i);
 		rangle += FOV / NUM_RAYS;
 		i++;
 	}
