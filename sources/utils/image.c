@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 21:29:34 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 16:45:44 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:33:45 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	*get_image(t_cub *cub, char *path)
+void	*get_image(t_cub *cub, char *path, int i)
 {
-	int		img_w;
-	int		img_h;
 	void	*img;
 
-	img = mlx_xpm_file_to_image(cub->mlx, path, &img_w, &img_h);
+	img = mlx_xpm_file_to_image(cub->mlx, path, &cub->img[i].width,
+			&cub->img[i].height);
+	if (img)
+		cub->img[i].addr = mlx_get_data_addr(img, &cub->img[i].bits_per_pixel,
+				&cub->img[i].line_length, &cub->img[i].endian);
 	return (img);
 }
 
@@ -54,10 +56,10 @@ void	generate_img(t_cub *cub)
 	i = 0;
 	n = 0;
 	cub->img = (t_img *)malloc(sizeof(t_img) * IMG);
-	cub->img[0].img = get_image(cub, cub->path_no);
-	cub->img[1].img = get_image(cub, cub->path_so);
-	cub->img[2].img = get_image(cub, cub->path_we);
-	cub->img[3].img = get_image(cub, cub->path_ea);
+	cub->img[0].img = get_image(cub, cub->path_no, 0);
+	cub->img[1].img = get_image(cub, cub->path_so, 1);
+	cub->img[2].img = get_image(cub, cub->path_we, 2);
+	cub->img[3].img = get_image(cub, cub->path_ea, 3);
 	while (i < IMG)
 	{
 		if (cub->img[i].img == NULL)
