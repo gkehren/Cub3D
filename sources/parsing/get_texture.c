@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:44:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 17:07:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:11:20 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_max(char **map)
 	int	j;
 	int	max;
 
-	j = 0;
+	j = get_start_map(map);
 	max = 0;
 	while (map[j])
 	{

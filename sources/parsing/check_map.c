@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:50:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 14:33:21 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 19:14:02 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ bool	check_char_map(char **map, t_cub *cub)
 			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E'
 				|| map[j][i] == 'W')
 			{
-				cub->player.x = i;
-				cub->player.y = j;
+				cub->player.x = i + 0.5;
+				cub->player.y = j + 0.5;
 			}
 			i++;
 		}

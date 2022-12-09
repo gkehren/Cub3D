@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 18:52:05 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:08:49 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 	double	rangle;
 	int		i;
 
-	begin.y = player->y * PIXELS;
-	begin.x = player->x * PIXELS;
+	begin.y = player->y * MAP;
+	begin.x = player->x * MAP;
 	rangle = player->rotationangle - (FOV / 2);
 	i = 0;
 	while (i < num_rays)
@@ -94,7 +94,6 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 		end.x = begin.x + cos(cub->ray[i].rayangle) * cub->ray[i].distance;
 		end.y = begin.y + sin(cub->ray[i].rayangle) * cub->ray[i].distance;
 		print_line(begin, end, &cub->minimap);
-		my_mlx_pixel_put(&cub->game, 100, 100, RED);
 		projection(cub, &cub->ray[i], i);
 		rangle += FOV / NUM_RAYS;
 		i++;
@@ -113,18 +112,18 @@ void	render_minimap(t_cub *cub, t_player *player)
 		while (cub->map[i][++j])
 		{
 			if (cub->map[i][j] == '1')
-				render_pixels(PIXELS, &cub->minimap, (t_coord){j, i}, BLACK);
+				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, BLACK);
 			else if (cub->map[i][j] != ' ')
-				render_pixels(PIXELS, &cub->minimap, (t_coord){j, i}, WHITE);
+				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, WHITE);
 		}
 	}
 	mlx_clear_window(cub->mlx, cub->win);
-	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
+	print_square(player->x * MAP, player->y * MAP, 7, &cub->minimap);
 	if (player->update == true)
 		render_rays(cub, player, NUM_RAYS);
 	else
 		render_rays(cub, player, NUM_RAYS / 8);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
-	// mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
-		// WIDTH - (cub->width_map * PIXELS), 0);
+	 mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
+		 WIDTH - (cub->width_map * MAP), 0);
 }

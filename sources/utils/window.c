@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 23:41:08 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:03:24 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	init_window(t_cub *cub)
 	cub->game.width = WIDTH;
 	cub->game.height = HEIGHT;
 	cub->minimap.img = mlx_new_image(cub->mlx,
-			cub->width_map * PIXELS, cub->height_map * PIXELS);
-	cub->minimap.width = cub->width_map * PIXELS;
-	cub->minimap.height = cub->height_map * PIXELS;
+			cub->width_map * MAP, cub->height_map * MAP);
+	cub->minimap.width = cub->width_map * MAP;
+	cub->minimap.height = cub->height_map * MAP;
 	cub->minimap.addr = mlx_get_data_addr(cub->minimap.img,
 			&cub->minimap.bits_per_pixel, &cub->minimap.line_length,
 			&cub->minimap.endian);

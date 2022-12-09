@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 18:46:53 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:11:09 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WIDTH 1280
 # define HEIGHT 720
 # define PIXELS 64
+# define MAP 16
 # define PI 3.14159265
 # define IMG 4
 
@@ -145,6 +146,7 @@ bool			check_char_map(char **map, t_cub *cub);
 int				check_path(char *file);
 char			**get_map(char *file);
 int				get_max(char **map);
+int				get_start_map(char **map);
 bool			get_texture(t_cub *cub, char **map, int start);
 char			*ft_strcpy_texture(char *dst, char *src);
 /*=================*/
