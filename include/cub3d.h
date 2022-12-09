@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 15:47:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:30:06 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #include <X11/keysym.h>
 
 /*=====DEFINE=====*/
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1280
+# define HEIGHT 720
 # define PIXELS 16
 # define PI 3.14159265
 # define IMG 4
@@ -78,6 +78,7 @@ typedef struct s_player
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
+	bool	update;
 }	t_player;
 
 typedef struct s_ray

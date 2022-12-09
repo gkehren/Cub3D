@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 13:02:30 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 16:34:06 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	projection(t_cub *cub, double ray_dist, int idcol)
 		+ cub->rgb_floor[2]);
 }
 
-void	render_rays(t_cub *cub, t_player *player)
+void	render_rays(t_cub *cub, t_player *player, int num_rays)
 {
 	t_coord	begin;
 	t_coord	end;
@@ -70,7 +70,7 @@ void	render_rays(t_cub *cub, t_player *player)
 	begin.x = player->x * PIXELS;
 	rangle = player->rotationangle - (FOV / 2);
 	i = 0;
-	while (i < NUM_RAYS)
+	while (i < num_rays)
 	{
 		reinit_ray(&cub->ray[i], rangle);
 		dist = dda(cub, &cub->ray[i]) * cos(rangle - player->rotationangle);
@@ -79,7 +79,7 @@ void	render_rays(t_cub *cub, t_player *player)
 		print_line(begin, end, &cub->minimap);
 		my_mlx_pixel_put(&cub->game, 100, 100, RED);
 		projection(cub, dist, i);
-		rangle += FOV / NUM_RAYS;
+		rangle += FOV / num_rays;
 		i++;
 	}
 }
@@ -103,7 +103,10 @@ void	render_minimap(t_cub *cub, t_player *player)
 	}
 	mlx_clear_window(cub->mlx, cub->win);
 	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
-	render_rays(cub, player);
+	if (player->update == true)
+		render_rays(cub, player, NUM_RAYS);
+	else
+		render_rays(cub, player, NUM_RAYS / 8);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
 		WIDTH - (cub->width_map * PIXELS), 0);
