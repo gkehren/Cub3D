@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 13:02:30 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 18:36:34 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,36 @@ void	render_pixels(int size, t_img *img, t_coord p, int color)
 	}
 }
 
-void	projection(t_cub *cub, double ray_dist, int idcol)
+void	projection(t_cub *cub, int idcol)
 {
 	double	distance_proj_plane;
 	double	wall_strip_height;
 	t_coord	begin;
 	t_coord	begin2;
+	int 	offset;
+	t_img	txt;
 
 	distance_proj_plane = (WIDTH / 2) / tan(FOV / 2);
-	wall_strip_height = (PIXELS / ray_dist) * distance_proj_plane;
+	wall_strip_height = (PIXELS / cub->ray[idcol].distance) * distance_proj_plane;
 	begin.x = idcol * WALL_STRIP_WIDTH;
 	begin.y = (HEIGHT / 2) - (wall_strip_height / 2);
-	print_rectangle(begin, (t_dim){WALL_STRIP_WIDTH, wall_strip_height},
-		&cub->game, GREEN);
+	if (cub->ray->foundhorzwall == 1)
+	{
+		offset = (int)floor(cub->ray[idcol].horzwallhitx) % PIXELS;
+		if (cub->ray[idcol].israyfacingup == 1)
+			txt = cub->img[0];
+		else
+			txt = cub->img[1];
+	}	
+	else
+	{
+		offset = (int)floor(cub->ray[idcol].vertwallhity) % PIXELS;
+		if (cub->ray[idcol].israyfacingleft == 1)
+			txt = cub->img[2];
+		else
+			txt = cub->img[3];
+	}
+	print_rectangle_text(begin, (t_dim){WALL_STRIP_WIDTH, wall_strip_height}, &cub->game, &txt, offset);
 	begin2.x = begin.x;
 	begin2.y = 0;
 	print_rectangle(begin2, (t_dim){WALL_STRIP_WIDTH, begin.y},
@@ -64,7 +81,6 @@ void	render_rays(t_cub *cub, t_player *player)
 	t_coord	end;
 	double	rangle;
 	int		i;
-	double	dist;
 
 	begin.y = player->y * PIXELS;
 	begin.x = player->x * PIXELS;
@@ -73,12 +89,13 @@ void	render_rays(t_cub *cub, t_player *player)
 	while (i < NUM_RAYS)
 	{
 		reinit_ray(&cub->ray[i], rangle);
-		dist = dda(cub, &cub->ray[i]) * cos(rangle - player->rotationangle);
-		end.x = begin.x + cos(cub->ray[i].rayangle) * dist;
-		end.y = begin.y + sin(cub->ray[i].rayangle) * dist;
+		dda(cub, &cub->ray[i]);
+		cub->ray[i].distance *= cos(rangle - player->rotationangle);
+		end.x = begin.x + cos(cub->ray[i].rayangle) * cub->ray[i].distance;
+		end.y = begin.y + sin(cub->ray[i].rayangle) * cub->ray[i].distance;
 		print_line(begin, end, &cub->minimap);
 		my_mlx_pixel_put(&cub->game, 100, 100, RED);
-		projection(cub, dist, i);
+		projection(cub, i);
 		rangle += FOV / NUM_RAYS;
 		i++;
 	}
@@ -105,6 +122,6 @@ void	render_minimap(t_cub *cub, t_player *player)
 	print_square(player->x * PIXELS, player->y * PIXELS, 7, &cub->minimap);
 	render_rays(cub, player);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
-		WIDTH - (cub->width_map * PIXELS), 0);
+	// mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
+		// WIDTH - (cub->width_map * PIXELS), 0);
 }

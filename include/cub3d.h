@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 15:47:03 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:23:21 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 #include <X11/keysym.h>
 
 /*=====DEFINE=====*/
-# define WIDTH 1920
-# define HEIGHT 1080
-# define PIXELS 16
+# define WIDTH 1280
+# define HEIGHT 720
+# define PIXELS 64
 # define PI 3.14159265
 # define IMG 4
 
@@ -40,7 +40,7 @@
 
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
-# define WALL_STRIP_WIDTH 4
+# define WALL_STRIP_WIDTH 1
 # define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
@@ -119,54 +119,56 @@ typedef struct s_cub
 }	t_cub;
 
 /*=====DISPLAY=====*/
-void		my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void		init_window(t_cub *cub);
-int			close_window(t_cub *cub);
-void		generate_img(t_cub *cub);
-void		render_minimap(t_cub *cub, t_player *player);
-int			move_player(int keycode, t_cub *cub);
-void		init_rays(t_cub *cub);
-void		init_player(t_cub *cub);
+void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
+unsigned int	my_mlx_pixel_get(t_img *img, int x, int y);
+void			init_window(t_cub *cub);
+int				close_window(t_cub *cub);
+void			generate_img(t_cub *cub);
+void			render_minimap(t_cub *cub, t_player *player);
+int				move_player(int keycode, t_cub *cub);
+void			init_rays(t_cub *cub);
+void			init_player(t_cub *cub);
 /*=====INTERSECTIONS=====*/
-double		dda(t_cub *cub, t_ray *ray);
-void		where_ray_facing(t_ray *ray);
-double		return_ray(t_cub *cub, t_ray *ray);
-bool		has_wall_at(t_cub *cub, double x, double y);
+double			dda(t_cub *cub, t_ray *ray);
+void			where_ray_facing(t_ray *ray);
+double			return_ray(t_cub *cub, t_ray *ray);
+bool			has_wall_at(t_cub *cub, double x, double y);
 /*=================*/
 
 /*=====PARSING=====*/
-int			parse_input(int argc, char **argv, t_cub *cub);
-char		*get_next_line(int fd);
-bool		map_close(char **map);
-bool		check_char_map(char **map, t_cub *cub);
-int			check_path(char *file);
-char		**get_map(char *file);
-int			get_max(char **map);
-bool		get_texture(t_cub *cub, char **map, int start);
-char		*ft_strcpy_texture(char *dst, char *src);
+int				parse_input(int argc, char **argv, t_cub *cub);
+char			*get_next_line(int fd);
+bool			map_close(char **map);
+bool			check_char_map(char **map, t_cub *cub);
+int				check_path(char *file);
+char			**get_map(char *file);
+int				get_max(char **map);
+bool			get_texture(t_cub *cub, char **map, int start);
+char			*ft_strcpy_texture(char *dst, char *src);
 /*=================*/
 
 /*=====PRINT_FORMS=====*/
-void		print_cross(int x, int y, t_img *img);
-void		print_square(int x, int y, int size, t_img *img);
-void		print_line(t_coord begin, t_coord end, t_img *img);
-void		print_rectangle(t_coord begin, t_dim dim, t_img *img, int color);
-double		distance(t_coord begin, t_coord end);
+void			print_cross(int x, int y, t_img *img);
+void			print_square(int x, int y, int size, t_img *img);
+void			print_line(t_coord begin, t_coord end, t_img *img);
+void			print_rectangle(t_coord begin, t_dim dim, t_img *img, int color);
+void			print_rectangle_text(t_coord begin, t_dim dim, t_img *screen, t_img *txt, double offset);
+double			distance(t_coord begin, t_coord end);
 /*=================*/
 
 /*=====INIT=====*/
-void		init_rays(t_cub *cub);
-void		reinit_ray(t_ray *ray, double rangle);
+void			init_rays(t_cub *cub);
+void			reinit_ray(t_ray *ray, double rangle);
 /*=================*/
 
 /*=====UTILS=====*/
-char		*ft_strcpy(char *dst, char *src);
-size_t		ft_strlen(char *s);
-char		*ft_strjoin(char *s1, char *s2);
-int			ft_strchr(char *s, int c);
-void		free_double_tab(void **ptr);
-double		max(double a, double b);
-double		min(double a, double b);
+char			*ft_strcpy(char *dst, char *src);
+size_t			ft_strlen(char *s);
+char			*ft_strjoin(char *s1, char *s2);
+int				ft_strchr(char *s, int c);
+void			free_double_tab(void **ptr);
+double			max(double a, double b);
+double			min(double a, double b);
 /*===============*/
 
 #endif

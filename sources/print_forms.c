@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/08 11:35:58 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/09 18:36:31 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,31 @@ void	print_rectangle(t_coord begin, t_dim dim, t_img *img, int color)
 		while (x < end.x)
 		{
 			my_mlx_pixel_put(img, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	print_rectangle_text(t_coord begin, t_dim dim, t_img *screen, t_img *txt, double offset)
+{
+	t_coord	end;
+	double	x;
+	double	y;
+	double x_txt;
+	double y_txt;
+
+	x_txt = offset / PIXELS * txt->width;
+	end.x = begin.x + dim.width;
+	end.y = begin.y + dim.height;
+	y = begin.y;
+	while (y < end.y)
+	{
+		x = begin.x;
+		y_txt = (y - begin.y) / dim.height * txt->height;
+		while (x < end.x)
+		{
+			my_mlx_pixel_put(screen, x, y, my_mlx_pixel_get(txt, (int)floor(x_txt), (int)floor(y_txt)));
 			x++;
 		}
 		y++;
