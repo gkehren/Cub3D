@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:58:34 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/08 17:54:43 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:50:49 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ double	dda(t_cub *cub, t_ray *ray)
 	find_horz(cub, &intercept, &step, ray);
 	find_step_v(cub, ray, &step, &intercept);
 	find_vert(cub, &intercept, &step, ray);
-	return (return_ray(cub, ray));
+	ray->distance = return_ray(cub, ray);
+	return (ray->distance);
 }
