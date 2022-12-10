@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 19:11:09 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/10 11:48:53 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
-#include <X11/keysym.h>
+# include <X11/keysym.h>
 
 /*=====DEFINE=====*/
 # define WIDTH 1280
@@ -41,7 +41,7 @@
 
 /*=====RAY'S DEFINE=====*/
 # define FOV (60 * (PI / 180))
-# define WALL_STRIP_WIDTH 1
+# define WALL_STRIP_WIDTH 2
 # define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
@@ -67,6 +67,13 @@ typedef struct s_img
 	int		width;
 	int		height;
 }	t_img;
+
+typedef struct s_proj
+{
+	t_img	*screen;
+	t_img	txt;
+	double	offset;
+}	t_proj;
 
 typedef struct s_player
 {
@@ -155,8 +162,9 @@ char			*ft_strcpy_texture(char *dst, char *src);
 void			print_cross(int x, int y, t_img *img);
 void			print_square(int x, int y, int size, t_img *img);
 void			print_line(t_coord begin, t_coord end, t_img *img);
-void			print_rectangle(t_coord begin, t_dim dim, t_img *img, int color);
-void			print_rectangle_text(t_coord begin, t_dim dim, t_img *screen, t_img *txt, double offset);
+void			print_rectangle(t_coord begin, t_dim dim,
+					t_img *img, int color);
+void			print_rectangle_text(t_coord begin, t_dim dim, t_proj *proj);
 double			distance(t_coord begin, t_coord end);
 /*=================*/
 
