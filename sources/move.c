@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 16:28:19 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/10 15:29:32 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int	move_player(int keycode, t_cub *cub)
 		move_camera_left(&cub->player);
 	if (keycode == XK_Escape)
 		close_window(cub);
-	render_minimap(cub, &cub->player);
+	render(cub, &cub->player);
 	return (0);
 }

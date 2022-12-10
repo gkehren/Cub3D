@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:34:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 19:03:24 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/10 18:23:34 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ int	close_window(t_cub *cub)
 
 void	init_window(t_cub *cub)
 {
-	cub->mlx = mlx_init();
-	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "Cub3D");
-	generate_img(cub);
-	init_player(cub);
-	init_rays(cub);
 	cub->game.img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->game.width = WIDTH;
 	cub->game.height = HEIGHT;
-	cub->minimap.img = mlx_new_image(cub->mlx,
-			cub->width_map * MAP, cub->height_map * MAP);
+	if (cub->width_map * MAP > WIDTH / 2 || cub->height_map * MAP > HEIGHT / 3)
+		cub->minimap.img = mlx_new_image(cub->mlx,
+				20 * MAP, 20 * MAP);
+	else
+		cub->minimap.img = mlx_new_image(cub->mlx,
+				cub->width_map * MAP, cub->height_map * MAP);
 	cub->minimap.width = cub->width_map * MAP;
 	cub->minimap.height = cub->height_map * MAP;
 	cub->minimap.addr = mlx_get_data_addr(cub->minimap.img,
@@ -54,7 +53,17 @@ void	init_window(t_cub *cub)
 	cub->game.addr = mlx_get_data_addr(cub->game.img,
 			&cub->game.bits_per_pixel, &cub->game.line_length,
 			&cub->game.endian);
-	render_minimap(cub, &cub->player);
+}
+
+void	init(t_cub *cub)
+{
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "Cub3D");
+	generate_img(cub);
+	init_player(cub);
+	init_rays(cub);
+	init_window(cub);
+	render(cub, &cub->player);
 	mlx_hook(cub->win, 2, 1L << 0, move_player, cub);
 	mlx_hook(cub->win, 17, 0, close_window, cub);
 	mlx_loop(cub->mlx);

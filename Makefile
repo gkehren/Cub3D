@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: genouf <genouf@student.42.fr>              +#+  +:+       +#+         #
+#    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/23 14:36:42 by gkehren           #+#    #+#              #
-#    Updated: 2022/12/08 12:19:28 by genouf           ###   ########.fr        #
+#    Updated: 2022/12/10 18:25:54 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FILES:= cub3d utils/free \
 		parsing/parse parsing/get_next_line parsing/get_next_line_utils parsing/check_map parsing/get_map parsing/get_texture \
-		utils/window utils/image move render player print_forms utils/intersections utils/intersections_utils utils/utils init_render
+		utils/window utils/image move render player print_forms utils/intersections utils/intersections_utils utils/utils \
+		init_render utils/minimap
 
 NAME:= cub3D
 

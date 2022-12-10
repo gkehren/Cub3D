@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 12:41:24 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/10 18:26:20 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	render_pixels(int size, t_img *img, t_coord p, int color)
-{
-	int	end_col;
-	int	end_line;
-	int	i;
-	int	j;
-
-	end_line = (p.x + 1) * size;
-	end_col = (p.y + 1) * size;
-	i = p.y * size;
-	while (i < end_col)
-	{
-		j = p.x * size;
-		while (j < end_line)
-		{
-			my_mlx_pixel_put(img, j, i, color);
-			j++;
-		}
-		i++;
-	}
-}
 
 void	set_up_txt(t_cub *cub, t_ray *ray, t_proj *proj)
 {
@@ -99,30 +77,22 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 	}
 }
 
-void	render_minimap(t_cub *cub, t_player *player)
+void	render(t_cub *cub, t_player *player)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (cub->map[++i])
-	{
-		j = -1;
-		while (cub->map[i][++j])
-		{
-			if (cub->map[i][j] == '1')
-				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, BLACK);
-			else if (cub->map[i][j] != ' ')
-				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, WHITE);
-		}
-	}
+	if (cub->width_map * MAP > WIDTH / 2 || cub->height_map * MAP > HEIGHT / 3)
+		render_minimap(cub, player);
+	else
+		full_render_minimap(cub, player);
 	mlx_clear_window(cub->mlx, cub->win);
-	print_square(player->x * MAP, player->y * MAP, 7, &cub->minimap);
 	if (player->update == true)
 		render_rays(cub, player, cub->num_rays);
 	else
-		render_rays(cub, player, cub->num_rays / 8);
+		render_rays(cub, player, cub->num_rays / PIXELS);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
-		WIDTH - (cub->width_map * MAP), 0);
+	if (cub->width_map * MAP > WIDTH / 2 || cub->height_map * MAP > HEIGHT / 3)
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
+			WIDTH - (20 * MAP), 0);
+	else
+		mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
+			WIDTH - (cub->width_map * MAP), 0);
 }

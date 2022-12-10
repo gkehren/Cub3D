@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 12:39:19 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/10 18:23:11 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int	main(int argc, char **argv)
 	cub.num_rays = WIDTH / WALL_STRIP_WIDTH;
 	if (parse_input(argc, argv, &cub))
 		return (0);
-	init_window(&cub);
+	init(&cub);
 	return (close_window(&cub), 0);
 }

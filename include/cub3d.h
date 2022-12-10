@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 12:48:04 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/10 18:25:32 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,12 @@ typedef struct s_cub
 /*=====DISPLAY=====*/
 void			my_mlx_pixel_put(t_img *img, int x, int y, int color);
 unsigned int	my_mlx_pixel_get(t_img *img, int x, int y);
-void			init_window(t_cub *cub);
+void			init(t_cub *cub);
 int				close_window(t_cub *cub);
 void			generate_img(t_cub *cub);
+void			render(t_cub *cub, t_player *player);
 void			render_minimap(t_cub *cub, t_player *player);
+void			full_render_minimap(t_cub *cub, t_player *player);
 int				move_player(int keycode, t_cub *cub);
 void			init_rays(t_cub *cub);
 void			init_player(t_cub *cub);
