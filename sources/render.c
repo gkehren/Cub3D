@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 11:46:49 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/10 12:41:24 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	projection(t_cub *cub, t_ray *ray, int idcol)
 	t_coord	begin2;
 	t_proj	proj;
 
-	distance_proj_plane = (WIDTH / 2) / tan(FOV / 2);
+	distance_proj_plane = (WIDTH / 2) / tan(cub->fov / 2);
 	wall_strip_height = (PIXELS / ray->distance) * distance_proj_plane;
 	begin.x = idcol * WALL_STRIP_WIDTH;
 	begin.y = (HEIGHT / 2) - (wall_strip_height / 2);
@@ -86,7 +86,7 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 	double	rangle;
 	int		i;
 
-	rangle = player->rotationangle - (FOV / 2);
+	rangle = player->rotationangle - (cub->fov / 2);
 	i = 0;
 	while (i < num_rays)
 	{
@@ -94,7 +94,7 @@ void	render_rays(t_cub *cub, t_player *player, int num_rays)
 		dda(cub, &cub->ray[i]);
 		cub->ray[i].distance *= cos(rangle - player->rotationangle);
 		projection(cub, &cub->ray[i], i);
-		rangle += FOV / NUM_RAYS;
+		rangle += cub->fov / cub->num_rays;
 		i++;
 	}
 }
@@ -119,9 +119,9 @@ void	render_minimap(t_cub *cub, t_player *player)
 	mlx_clear_window(cub->mlx, cub->win);
 	print_square(player->x * MAP, player->y * MAP, 7, &cub->minimap);
 	if (player->update == true)
-		render_rays(cub, player, NUM_RAYS);
+		render_rays(cub, player, cub->num_rays);
 	else
-		render_rays(cub, player, NUM_RAYS / 8);
+		render_rays(cub, player, cub->num_rays / 8);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,
 		WIDTH - (cub->width_map * MAP), 0);

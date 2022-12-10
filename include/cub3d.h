@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 11:48:53 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/10 12:48:04 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,7 @@
 # define RED 0xff0000
 
 /*=====RAY'S DEFINE=====*/
-# define FOV (60 * (PI / 180))
 # define WALL_STRIP_WIDTH 2
-# define NUM_RAYS (WIDTH / WALL_STRIP_WIDTH)
 
 /*=====STRUCT=====*/
 typedef struct s_coord
@@ -110,6 +108,8 @@ typedef struct s_ray
 
 typedef struct s_cub
 {
+	double		fov;
+	int			num_rays;
 	void		*mlx;
 	void		*win;
 	char		**map;

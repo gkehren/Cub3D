@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:38:59 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/09 18:49:29 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/10 12:40:51 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	init_rays(t_cub *cub)
 	int	i;
 
 	i = 0;
-	cub->ray = (t_ray *)malloc(sizeof(t_ray) * NUM_RAYS);
-	while (i < NUM_RAYS)
+	cub->ray = (t_ray *)malloc(sizeof(t_ray) * cub->num_rays);
+	while (i < cub->num_rays)
 	{
 		cub->ray[i].distance = 0;
 		cub->ray[i].israyfacingdown = 0;
 		cub->ray[i].israyfacingleft = 0;
 		cub->ray[i].israyfacingright = 0;
 		cub->ray[i].israyfacingup = 0;
-		cub->ray[i].rayangle = cub->player.rotationangle - (FOV / 2);
+		cub->ray[i].rayangle = cub->player.rotationangle - (cub->fov / 2);
 		cub->ray[i].vertwallhitcontent = 0;
 		cub->ray[i].vertwallhitx = 0;
 		cub->ray[i].vertwallhity = 0;

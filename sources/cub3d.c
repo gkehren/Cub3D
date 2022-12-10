@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:45:04 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/02 16:11:45 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/10 12:39:19 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_cub	cub;
 
+	cub.fov = (60 * (PI / 180));
+	cub.num_rays = WIDTH / WALL_STRIP_WIDTH;
 	if (parse_input(argc, argv, &cub))
 		return (0);
 	init_window(&cub);
