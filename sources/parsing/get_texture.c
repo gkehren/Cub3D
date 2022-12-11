@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:44:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:03:17 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:27:08 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ bool	get_texture(t_cub *cub, char **map, int start, int j)
 	cub->path_ea = ft_strcpy_texture(cub->path_ea, map[j]);
 	j++;
 	if (!cub->path_no || !cub->path_so || !cub->path_we || !cub->path_ea)
-		return (false);
+		return (free_double_tab((void **)map), free_path(cub), false);
 	if (get_texture_rgb(cub, map, j, start) == false)
-		return (false);
+		return (free_double_tab((void **)map), free_path(cub), false);
 	return (true);
 }
