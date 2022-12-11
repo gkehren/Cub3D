@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:35:15 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:01:50 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:15:32 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,17 @@ void	move_right(t_player *player, t_cub *cub)
 {
 	if (has_wall_at(cub, PIXELS * (player->x - (player->walkspeed
 					* sin(player->rotationangle) / 2)) + PADDING,
-			PIXELS * player->y) == false)
+			PIXELS * player->y) == false
+		&& has_wall_at(cub, PIXELS * (player->x - (player->walkspeed
+					* sin(player->rotationangle) / 2))
+			- PADDING, PIXELS * player->y) == false)
 		player->x -= player->walkspeed * sin(player->rotationangle) / 2;
 	if (has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
 				+ (player->walkspeed * cos(player->rotationangle) / 2))
-			- PADDING) == false)
+			- PADDING) == false
+		&& has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
+				+ (player->walkspeed * cos(player->rotationangle) / 2))
+			+ PADDING) == false)
 		player->y += player->walkspeed * cos(player->rotationangle) / 2;
 }
 
@@ -56,10 +62,16 @@ void	move_left(t_player *player, t_cub *cub)
 {
 	if (has_wall_at(cub, PIXELS * (player->x + (player->walkspeed
 					* sin(player->rotationangle) / 2)) - PADDING,
+			PIXELS * player->y) == false
+		&& has_wall_at(cub, PIXELS * (player->x + (player->walkspeed
+					* sin(player->rotationangle) / 2)) + PADDING,
 			PIXELS * player->y) == false)
 		player->x += player->walkspeed * sin(player->rotationangle) / 2;
 	if (has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
 				- (player->walkspeed * cos(player->rotationangle) / 2))
-			+ PADDING) == false)
+			+ PADDING) == false
+		&& has_wall_at(cub, PIXELS * player->x, PIXELS * (player->y
+				- (player->walkspeed * cos(player->rotationangle) / 2))
+			- PADDING) == false)
 		player->y -= player->walkspeed * cos(player->rotationangle) / 2;
 }
