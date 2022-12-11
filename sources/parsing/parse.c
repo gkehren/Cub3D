@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 19:12:20 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:55:41 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ char	**copy_second(char **map, char **pmap, int j, int nb_line)
 	return (map);
 }
 
-char	**copy(char **map, char **pmap)
+char	**copy(char **map, char **pmap, int rec_index)
 {
 	int	j;
 	int	nb_line;
 
-	j = get_start_map(pmap);
+	j = get_start_map_bis(pmap, rec_index);
 	nb_line = j;
 	if (j == -1)
-		return (NULL);
+		return (free_double_tab((void **)pmap), NULL);
 	while (pmap[nb_line])
 		nb_line++;
 	map = (char **)malloc(sizeof(char *) * (nb_line - j + 1));
@@ -102,16 +102,17 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 	pmap = get_map(argv[1]);
 	if (!pmap)
 		return (printf("Error: can't open file\n"), 1);
-	if (get_texture(cub, pmap, get_start_map(pmap)) == false)
+	if (get_texture(cub, pmap, get_start_map(pmap), 0) == false)
 		return (printf("Error: texture is invalid\n"), 1);
-	cub->map = copy(cub->map, pmap);
+	cub->map = copy(cub->map, pmap, cub->rec_index);
 	if (!cub->map)
-		return (printf("Error: map not found\n"), 1);
-	if (map_close(cub->map) == false)
+		return (free_path(cub), printf("Error: map not found\n"), 1);
+	if (map_close(cub) == false)
 		return (printf("Error: map is not close\n"),
 			free_double_tab((void **)cub->map), 1);
 	if (check_char_map(cub->map, cub) == false)
-		return (printf("Error: map contains invalid characters\n"), 1);
+		return (free_double_tab((void **)cub->map), free_path(cub),
+			printf("Error: map contains invalid characters\n"), 1);
 	len_map(cub);
 	return (0);
 }

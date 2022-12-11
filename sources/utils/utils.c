@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:21:27 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/08 17:40:26 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:38:09 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,20 @@ double	distance(t_coord begin, t_coord end)
 	distance.x = end.x - begin.x;
 	distance.y = end.y - begin.y;
 	return (sqrt(distance.x * distance.x + distance.y * distance.y));
+}
+
+int	get_start_map_bis(char **map, int rec_index)
+{
+	int	j;
+
+	j = rec_index;
+	while (map[j])
+	{
+		if (map[j][0] == ' ' || map[j][0] == '1')
+			return (j);
+		else if (map[j][0] != '\n')
+			return (-1);
+		j++;
+	}
+	return (-1);
 }
