@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/02 01:34:40 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 18:26:20 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:03:06 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ void	render(t_cub *cub, t_player *player)
 	else
 		full_render_minimap(cub, player);
 	mlx_clear_window(cub->mlx, cub->win);
-	if (player->update == true)
-		render_rays(cub, player, cub->num_rays);
-	else
-		render_rays(cub, player, cub->num_rays / PIXELS);
+	render_rays(cub, player, cub->num_rays);
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->game.img, 0, 0);
 	if (cub->width_map * MAP > WIDTH / 2 || cub->height_map * MAP > HEIGHT / 3)
 		mlx_put_image_to_window(cub->mlx, cub->win, cub->minimap.img,

@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 18:25:32 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:59:37 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MAP 16
 # define PI 3.14159265
 # define IMG 4
+# define PADDING 21
 
 /*=====COLOR'S DEFINE=====*/
 # define BLACK 0x5B5767
@@ -80,11 +81,9 @@ typedef struct s_player
 	double	turn_x;
 	double	turn_y;
 	double	turndirection;
-	double	walkdirection;
 	double	rotationangle;
 	double	walkspeed;
 	double	turnspeed;
-	bool	update;
 }	t_player;
 
 typedef struct s_ray
@@ -145,6 +144,11 @@ double			dda(t_cub *cub, t_ray *ray);
 void			where_ray_facing(t_ray *ray);
 double			return_ray(t_cub *cub, t_ray *ray);
 bool			has_wall_at(t_cub *cub, double x, double y);
+/*=====MOVES=====*/
+void			move_forward(t_player *player, t_cub *cub);
+void			move_backward(t_player *player, t_cub *cub);
+void			move_right(t_player *player, t_cub *cub);
+void			move_left(t_player *player, t_cub *cub);
 /*=================*/
 
 /*=====PARSING=====*/
