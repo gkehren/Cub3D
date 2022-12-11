@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:24:35 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 19:57:28 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:40:13 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	render_pixels(int size, t_img *img, t_coord p, int color)
 unsigned int	get_map_color(t_cub *cub, int x, int y)
 {
 	if (x < 0 || y < 0 || x >= cub->width_map || y >= cub->height_map)
-		return (0x000000);
+		return (BLACK);
 	else if (cub->map[y][x] == '1')
+		return (BLACK);
+	else if (cub->map[y][x] == ' ')
 		return (BLACK);
 	else
 		return (WHITE);
@@ -86,6 +88,8 @@ void	full_render_minimap(t_cub *cub, t_player *player)
 				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, BLACK);
 			else if (cub->map[i][j] != ' ')
 				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, WHITE);
+			else
+				render_pixels(MAP, &cub->minimap, (t_coord){j, i}, BLACK);
 		}
 	}
 	print_square(player->x * MAP, player->y * MAP, 8, &cub->minimap);

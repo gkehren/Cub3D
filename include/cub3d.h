@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:02:20 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:50:02 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ bool			map_close(t_cub *cub);
 bool			check_char_map(char **map, t_cub *cub);
 int				check_path(char *file);
 char			**get_map(char *file);
+char			**copy(char **map, char **pmap, int rec_index);
 int				get_max(char **map);
 int				get_start_map(char **map);
 int				get_start_map_bis(char **map, int rec_index);

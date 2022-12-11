@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 22:55:41 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 23:49:35 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 int	get_start_map(char **map)
 {
@@ -24,52 +24,6 @@ int	get_start_map(char **map)
 		j++;
 	}
 	return (-1);
-}
-
-char	**copy_second(char **map, char **pmap, int j, int nb_line)
-{
-	int	n;
-	int	i;
-	int	len_max;
-
-	n = 0;
-	len_max = get_max(pmap);
-	while (j < nb_line)
-	{
-		i = 0;
-		map[n] = (char *)malloc(sizeof(char) * len_max + 1);
-		while (pmap[j][i] != '\n' && pmap[j][i])
-		{
-			map[n][i] = pmap[j][i];
-			if (map[n][i] == ' ')
-				map[n][i] = '1';
-			i++;
-		}
-		while (i < len_max)
-			map[n][i++] = '1';
-		map[n][i] = '\0';
-		j++;
-		n++;
-	}
-	map[n] = NULL;
-	return (map);
-}
-
-char	**copy(char **map, char **pmap, int rec_index)
-{
-	int	j;
-	int	nb_line;
-
-	j = get_start_map_bis(pmap, rec_index);
-	nb_line = j;
-	if (j == -1)
-		return (free_double_tab((void **)pmap), NULL);
-	while (pmap[nb_line])
-		nb_line++;
-	map = (char **)malloc(sizeof(char *) * (nb_line - j + 1));
-	map = copy_second(map, pmap, j, nb_line);
-	free_double_tab((void **)pmap);
-	return (map);
 }
 
 void	len_map(t_cub *cub)
@@ -89,6 +43,32 @@ void	len_map(t_cub *cub)
 	while (cub->map[j])
 		j++;
 	cub->height_map = j;
+}
+
+char	**replace_map(char **map, t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < cub->height_map)
+	{
+		j = 0;
+		while (j < cub->width_map)
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+			j++;
+		}
+		j = ft_strlen(map[i]);
+		while (j < cub->width_map)
+		{
+			map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+	return (map);
 }
 
 int	parse_input(int argc, char **argv, t_cub *cub)
@@ -114,5 +94,6 @@ int	parse_input(int argc, char **argv, t_cub *cub)
 		return (free_double_tab((void **)cub->map), free_path(cub),
 			printf("Error: map contains invalid characters\n"), 1);
 	len_map(cub);
+	cub->map = replace_map(cub->map, cub);
 	return (0);
 }
