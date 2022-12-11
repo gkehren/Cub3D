@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/10 18:25:32 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:44:10 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_cub
 	char		*path_ea;
 	int			rgb_floor[3];
 	int			rgb_ceiling[3];
+	int			rec_index;
 }	t_cub;
 
 /*=====DISPLAY=====*/
@@ -150,14 +151,16 @@ bool			has_wall_at(t_cub *cub, double x, double y);
 /*=====PARSING=====*/
 int				parse_input(int argc, char **argv, t_cub *cub);
 char			*get_next_line(int fd);
-bool			map_close(char **map);
+bool			map_close(t_cub *cub);
 bool			check_char_map(char **map, t_cub *cub);
 int				check_path(char *file);
 char			**get_map(char *file);
 int				get_max(char **map);
 int				get_start_map(char **map);
+int				get_start_map_bis(char **map, int rec_index);
 bool			get_texture(t_cub *cub, char **map, int start);
 char			*ft_strcpy_texture(char *dst, char *src);
+int				check_begin_map(t_cub *cub, char **map);
 /*=================*/
 
 /*=====PRINT_FORMS=====*/
@@ -181,6 +184,7 @@ size_t			ft_strlen(char *s);
 char			*ft_strjoin(char *s1, char *s2);
 int				ft_strchr(char *s, int c);
 void			free_double_tab(void **ptr);
+void			free_path(t_cub *cub);
 double			max(double a, double b);
 double			min(double a, double b);
 /*===============*/

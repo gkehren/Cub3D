@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:50:36 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 19:14:02 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 22:02:18 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,21 @@ bool	check_else(char **map, int j, int i, int nb_line)
 	return (true);
 }
 
-bool	map_close(char **map)
+bool	map_close(t_cub *cub)
 {
 	int	j;
 	int	nb_line;
 
 	j = 0;
 	nb_line = 0;
-	while (map[nb_line])
+	while (cub->map[nb_line])
 		nb_line++;
-	while (map[j])
+	while (cub->map[j])
 	{
-		if (check_line(map[j]) == false)
-			return (false);
-		if (check_else(map, j, 0, nb_line) == false)
-			return (false);
+		if (check_line(cub->map[j]) == false)
+			return (free_path(cub), false);
+		if (check_else(cub->map, j, 0, nb_line) == false)
+			return (free_path(cub), false);
 		j++;
 	}
 	return (true);

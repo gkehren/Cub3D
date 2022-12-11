@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 17:03:57 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/07 10:00:03 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 22:01:22 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,12 @@ void	free_double_tab(void **ptr)
 	}
 	if (ptr)
 		free(ptr);
+}
+
+void	free_path(t_cub *cub)
+{
+	free(cub->path_no);
+	free(cub->path_so);
+	free(cub->path_ea);
+	free(cub->path_we);
 }
