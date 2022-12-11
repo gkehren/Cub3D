@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 22:44:10 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 22:55:27 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ char			**get_map(char *file);
 int				get_max(char **map);
 int				get_start_map(char **map);
 int				get_start_map_bis(char **map, int rec_index);
-bool			get_texture(t_cub *cub, char **map, int start);
+bool			get_texture(t_cub *cub, char **map, int start, int j);
 char			*ft_strcpy_texture(char *dst, char *src);
 int				check_begin_map(t_cub *cub, char **map);
 /*=================*/

@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:44:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 22:43:45 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 22:55:15 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,8 @@ bool	get_texture_rgb(t_cub *cub, char **map, int j, int start)
 	return (true);
 }
 
-bool	get_texture(t_cub *cub, char **map, int start)
+bool	get_texture(t_cub *cub, char **map, int start, int j)
 {
-	int	j;
-
-	j = 0;
 	if (check_begin_map(cub, map))
 		return (free_double_tab((void **)map), false);
 	while (j < start && map[j][0] == '\n')

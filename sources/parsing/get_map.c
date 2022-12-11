@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 14:49:56 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 22:52:48 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 22:56:16 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ int	check_begin_map(t_cub *cub, char **map)
 			i++;
 		else
 		{
-			if (strcmp_begin_m((char *)tab[j], map[i], ft_strlen((char *)tab[j])))
+			if (strcmp_begin_m((char *)tab[j], map[i],
+					ft_strlen((char *)tab[j])))
 				return (1);
 			i++;
 			j++;
