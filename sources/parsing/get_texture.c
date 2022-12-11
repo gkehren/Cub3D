@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:44:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:27:08 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 23:58:35 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ bool	get_rgb(char	*map, int *rgb)
 	int	i;
 
 	i = 1;
+	if (check_line_rgb(map) == false)
+		return (false);
 	rgb[0] = ft_atoi_rgb(map + i);
 	while (map[i] && map[i] != ',')
 		i++;

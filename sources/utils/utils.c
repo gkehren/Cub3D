@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:21:27 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/11 22:38:09 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/11 23:58:31 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ double	distance(t_coord begin, t_coord end)
 	return (sqrt(distance.x * distance.x + distance.y * distance.y));
 }
 
+/*				OTHERS				*/
 int	get_start_map_bis(char **map, int rec_index)
 {
 	int	j;
@@ -49,4 +50,19 @@ int	get_start_map_bis(char **map, int rec_index)
 		j++;
 	}
 	return (-1);
+}
+
+bool	check_line_rgb(char *str)
+{
+	int	i;
+
+	i = 2;
+	while (str && str[i])
+	{
+		if (!ft_isdigit(str[i]) && str[i] != ',' && 
+				str[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:02:20 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/11 23:53:43 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,6 @@ int				check_path(char *file);
 char			**get_map(char *file);
 int				get_max(char **map);
 int				get_start_map(char **map);
-int				get_start_map_bis(char **map, int rec_index);
 bool			get_texture(t_cub *cub, char **map, int start, int j);
 char			*ft_strcpy_texture(char *dst, char *src);
 int				check_begin_map(t_cub *cub, char **map);
@@ -191,6 +190,9 @@ void			free_double_tab(void **ptr);
 void			free_path(t_cub *cub);
 double			max(double a, double b);
 double			min(double a, double b);
+int				get_start_map_bis(char **map, int rec_index);
+bool			check_line_rgb(char *str);
+int				ft_isdigit(int c);
 /*===============*/
 
 #endif
