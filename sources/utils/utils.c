@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:21:27 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/11 23:58:31 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/12 00:05:08 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ bool	check_line_rgb(char *str)
 	i = 2;
 	while (str && str[i])
 	{
-		if (!ft_isdigit(str[i]) && str[i] != ',' && 
-				str[i] != '\n')
+		if (!ft_isdigit(str[i]) && str[i] != ','
+			&& str[i] != '\n')
 			return (false);
 		i++;
 	}
