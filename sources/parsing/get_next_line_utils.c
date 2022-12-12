@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:38:38 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 21:09:14 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/12 23:22:38 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!str)
-		return (NULL);
+		return (free(s1), NULL);
 	i = 0;
 	while (s1[i] != '\0')
 	{
