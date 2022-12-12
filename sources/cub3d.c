@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_cub	cub;
 
-	cub.fov = (60 * (PI / 180));
+	cub.fov = (50 * (PI / 180));
 	cub.num_rays = WIDTH / WALL_STRIP_WIDTH;
 	if (parse_input(argc, argv, &cub))
 		return (0);

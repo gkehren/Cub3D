@@ -16,7 +16,7 @@ void	set_up_txt(t_cub *cub, t_ray *ray, t_proj *proj)
 {
 	if (ray->foundhorzwall == true && ray->closest == 0)
 	{
-		proj->offset = (int)floor(ray->horzwallhitx) % PIXELS;
+		proj->offset = (int)floor(ray->horzwallhitx) & 0b111111;
 		if (ray->israyfacingup == 1)
 			proj->txt = cub->img[0];
 		else
@@ -24,7 +24,7 @@ void	set_up_txt(t_cub *cub, t_ray *ray, t_proj *proj)
 	}
 	else
 	{
-		proj->offset = (int)floor(ray->vertwallhity) % PIXELS;
+		proj->offset = (int)floor(ray->vertwallhity) & 0b111111;
 		if (ray->israyfacingleft == 1)
 			proj->txt = cub->img[2];
 		else
@@ -33,16 +33,14 @@ void	set_up_txt(t_cub *cub, t_ray *ray, t_proj *proj)
 	proj->screen = &cub->game;
 }
 
-void	projection(t_cub *cub, t_ray *ray, int idcol)
+void	projection(t_cub *cub, t_ray *ray, int idcol, double dist_proj_p)
 {
-	double	distance_proj_plane;
 	double	wall_strip_height;
 	t_coord	begin;
 	t_coord	begin2;
 	t_proj	proj;
 
-	distance_proj_plane = (WIDTH / 2) / tan(cub->fov / 2);
-	wall_strip_height = (PIXELS / ray->distance) * distance_proj_plane;
+	wall_strip_height = (PIXELS / ray->distance) * dist_proj_p;
 	begin.x = idcol * WALL_STRIP_WIDTH;
 	begin.y = (HEIGHT / 2) - (wall_strip_height / 2);
 	set_up_txt(cub, ray, &proj);
@@ -62,17 +60,21 @@ void	projection(t_cub *cub, t_ray *ray, int idcol)
 void	render_rays(t_cub *cub, t_player *player, int num_rays)
 {
 	double	rangle;
+	double	inc_r;
+	double	dist_proj_p;
 	int		i;
 
 	rangle = player->rotationangle - (cub->fov / 2);
+	inc_r = cub->fov / cub->num_rays;
+	dist_proj_p = (WIDTH / 2) / tan(cub->fov / 2);
 	i = 0;
 	while (i < num_rays)
 	{
 		reinit_ray(&cub->ray[i], rangle);
 		dda(cub, &cub->ray[i]);
 		cub->ray[i].distance *= cos(rangle - player->rotationangle);
-		projection(cub, &cub->ray[i], i);
-		rangle += cub->fov / cub->num_rays;
+		projection(cub, &cub->ray[i], i, dist_proj_p);
+		rangle += inc_r;
 		i++;
 	}
 }

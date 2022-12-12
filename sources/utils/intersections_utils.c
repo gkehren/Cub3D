@@ -14,30 +14,28 @@
 
 double	return_ray(t_cub *cub, t_ray *ray)
 {
+	double	dist_vert;
+	double	dist_horz;
+
+	dist_vert = distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->vertwallhitx, ray->vertwallhity});
+	dist_horz = distance((t_coord){cub->player.x * PIXELS,
+				cub->player.y * PIXELS},
+			(t_coord){ray->horzwallhitx, ray->horzwallhity});
 	if (ray->foundhorzwall == false)
-		return (distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
-			(t_coord){ray->vertwallhitx, ray->vertwallhity}));
+		return (dist_vert);
 	else if (ray->foundvertwall == false)
-		return (distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
-			(t_coord){ray->horzwallhitx, ray->horzwallhity}));
-	if (distance((t_coord){cub->player.x * PIXELS, cub->player.y * PIXELS},
-		(t_coord){ray->vertwallhitx, ray->vertwallhity})
-		> distance((t_coord){cub->player.x * PIXELS, cub->player.y * PIXELS},
-		(t_coord){ray->horzwallhitx, ray->horzwallhity}))
+		return (dist_horz);
+	if (dist_vert > dist_horz)
 	{
 		ray->closest = 0;
-		return (distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
-			(t_coord){ray->horzwallhitx, ray->horzwallhity}));
+		return (dist_horz);
 	}
 	else
 	{
 		ray->closest = 1;
-		return (distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
-			(t_coord){ray->vertwallhitx, ray->vertwallhity}));
+		return (dist_vert);
 	}
 }
 

@@ -31,7 +31,7 @@
 # define MAP 16
 # define PI 3.14159265
 # define IMG 4
-# define PADDING 21
+# define PADDING 10
 
 /*=====COLOR'S DEFINE=====*/
 # define BLACK 0x5B5767
