@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:06 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/11 23:49:35 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/12 14:30:31 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ char	**replace_map(char **map, t_cub *cub)
 	int	j;
 
 	i = 0;
-	while (i < cub->height_map)
+	while (i < cub->height_map && map[i])
 	{
 		j = 0;
-		while (j < cub->width_map)
+		while (j < cub->width_map && map[j])
 		{
 			if (map[i][j] == ' ')
 				map[i][j] = '1';
@@ -66,6 +66,7 @@ char	**replace_map(char **map, t_cub *cub)
 			map[i][j] = '1';
 			j++;
 		}
+		map[i][j] = '\0';
 		i++;
 	}
 	return (map);
