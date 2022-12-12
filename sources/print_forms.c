@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/12 22:25:20 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/13 00:24:36 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,28 +97,27 @@ void	print_rectangle(t_coord begin, t_dim dim, t_img *img, int color)
 void	print_rectangle_text(t_coord begin, t_dim dim, t_proj *proj)
 {
 	t_coord	end;
-	double	x;
-	double	y;
+	t_coord	local;
 	double	x_txt;
 	double	y_txt;
+	double	y_it;
 
 	x_txt = proj->offset / PIXELS * proj->txt.width;
 	end.x = begin.x + dim.width;
-	end.y = begin.y + dim.height;
-	y = begin.y - 1;
-	while (++y < end.y)
+	end.y = min(HEIGHT, begin.y + dim.height);
+	local.y = max(-1, begin.y - 1);
+	y_it = (double)proj->txt.height / (double)dim.height;
+	y_txt = y_it * ((int)floor(local.y) - (int)floor(begin.y) + 1);
+	while (++local.y < end.y)
 	{
-		x = begin.x;
-		if ((y >= 0 && y < HEIGHT) && (x >= 0 && x < WIDTH))
+		local.x = begin.x;
+		while (local.x < end.x)
 		{
-			y_txt = (y - begin.y) / dim.height * proj->txt.height;
-			while (x < end.x)
-			{
-				my_mlx_pixel_put(proj->screen, x, y,
-					my_mlx_pixel_get(&proj->txt,
-						(int)floor(x_txt), (int)floor(y_txt)));
-				x++;
-			}
+			my_mlx_pixel_put(proj->screen, local.x, local.y,
+				my_mlx_pixel_get(&proj->txt,
+					(int)floor(x_txt), (int)floor(y_txt)));
+			local.x++;
 		}
+		y_txt += y_it;
 	}
 }

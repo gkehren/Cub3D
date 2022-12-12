@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:52:26 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/12 22:28:41 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/13 00:22:44 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define RED 0xff0000
 
 /*=====RAY'S DEFINE=====*/
-# define WALL_STRIP_WIDTH 2
+# define WALL_STRIP_WIDTH 1
 
 /*=====STRUCT=====*/
 typedef struct s_coord
