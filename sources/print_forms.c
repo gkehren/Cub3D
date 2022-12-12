@@ -109,12 +109,15 @@ void	print_rectangle_text(t_coord begin, t_dim dim, t_proj *proj)
 	while (y < end.y)
 	{
 		x = begin.x;
-		y_txt = (y - begin.y) / dim.height * proj->txt.height;
-		while (x < end.x)
+		if ((y >= 0 && y < HEIGHT) && (x >= 0 && x < WIDTH))
 		{
-			my_mlx_pixel_put(proj->screen, x, y, my_mlx_pixel_get(&proj->txt,
+			y_txt = (y - begin.y) / dim.height * proj->txt.height;
+			while (x < end.x)
+			{
+				my_mlx_pixel_put(proj->screen, x, y, my_mlx_pixel_get(&proj->txt,
 					(int)floor(x_txt), (int)floor(y_txt)));
-			x++;
+				x++;
+			}
 		}
 		y++;
 	}
