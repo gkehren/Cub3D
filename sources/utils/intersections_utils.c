@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersections_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
+/*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:24:32 by gkehren           #+#    #+#             */
-/*   Updated: 2022/12/09 18:48:55 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/12/12 22:25:36 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ double	return_ray(t_cub *cub, t_ray *ray)
 	double	dist_horz;
 
 	dist_vert = distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
+			cub->player.y * PIXELS},
 			(t_coord){ray->vertwallhitx, ray->vertwallhity});
 	dist_horz = distance((t_coord){cub->player.x * PIXELS,
-				cub->player.y * PIXELS},
+			cub->player.y * PIXELS},
 			(t_coord){ray->horzwallhitx, ray->horzwallhity});
 	if (ray->foundhorzwall == false)
 		return (dist_vert);

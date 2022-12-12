@@ -6,7 +6,7 @@
 /*   By: genouf <genouf@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 09:56:46 by genouf            #+#    #+#             */
-/*   Updated: 2022/12/10 11:37:34 by genouf           ###   ########.fr       */
+/*   Updated: 2022/12/12 22:25:20 by genouf           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	print_rectangle_text(t_coord begin, t_dim dim, t_proj *proj)
 	x_txt = proj->offset / PIXELS * proj->txt.width;
 	end.x = begin.x + dim.width;
 	end.y = begin.y + dim.height;
-	y = begin.y;
-	while (y < end.y)
+	y = begin.y - 1;
+	while (++y < end.y)
 	{
 		x = begin.x;
 		if ((y >= 0 && y < HEIGHT) && (x >= 0 && x < WIDTH))
@@ -114,11 +114,11 @@ void	print_rectangle_text(t_coord begin, t_dim dim, t_proj *proj)
 			y_txt = (y - begin.y) / dim.height * proj->txt.height;
 			while (x < end.x)
 			{
-				my_mlx_pixel_put(proj->screen, x, y, my_mlx_pixel_get(&proj->txt,
-					(int)floor(x_txt), (int)floor(y_txt)));
+				my_mlx_pixel_put(proj->screen, x, y,
+					my_mlx_pixel_get(&proj->txt,
+						(int)floor(x_txt), (int)floor(y_txt)));
 				x++;
 			}
 		}
-		y++;
 	}
 }
